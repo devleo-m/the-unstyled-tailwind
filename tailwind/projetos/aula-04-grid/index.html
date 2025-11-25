@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aula 4: CSS Grid com Tailwind CSS</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .code-block {
+      background: #0f172a;
+      color: #e2e8f0;
+      padding: 1rem;
+      border-radius: 0.75rem;
+      font-family: 'Courier New', monospace;
+      font-size: 0.85rem;
+      overflow-x: auto;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+    }
+    .badge {
+      background: rgba(59, 130, 246, 0.15);
+      border: 1px solid rgba(59, 130, 246, 0.5);
+      border-radius: 999px;
+      padding: 0.25rem 0.9rem;
+      font-size: 0.75rem;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-900">
+  <nav class="bg-white shadow sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <a href="../index.html" class="text-lg font-semibold text-blue-600 hover:text-blue-500 transition-colors">← Voltar</a>
+        <div class="flex items-center gap-3">
+          <span class="px-3 py-1 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full text-sm font-semibold shadow">Aula 4</span>
+          <p class="text-sm text-slate-500">CSS Grid completo</p>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <header class="bg-gradient-to-br from-blue-700 via-indigo-700 to-slate-900 text-white py-20">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
+      <p class="uppercase tracking-[0.5em] text-xs text-blue-200">Professor CSS Tailwind</p>
+      <h1 class="text-4xl md:text-5xl font-bold">Aula 4 · CSS Grid com Tailwind CSS</h1>
+      <p class="text-lg text-blue-100">
+        Agora que você já domina Flexbox, é hora de coordenar linhas e colunas com o Grid. Cada classe do Tailwind corresponde a uma propriedade CSS clara e fácil de memorizar.
+      </p>
+      <div class="flex flex-wrap justify-center gap-3">
+        <span class="badge">grid</span>
+        <span class="badge">gap</span>
+        <span class="badge">col-span</span>
+        <span class="badge">auto-fit</span>
+      </div>
+      <p class="text-base text-blue-100 max-w-3xl mx-auto">Como professor, eu quero que você entenda o “porquê” do layout: cada seção abaixo desconstrói um pedaço da aula com explicações, analogias e exemplos reais.</p>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-12">
+    <section id="fundamentos" class="bg-white rounded-3xl shadow-lg border border-slate-200 p-10 space-y-8">
+      <div class="space-y-2 text-center">
+        <p class="text-sm uppercase tracking-[0.5em] text-slate-400">Fundamentos</p>
+        <h2 class="text-3xl font-bold">Grid, colunas e linhas</h2>
+        <p class="text-slate-600">
+          O Tailwind mapeia diretamente o que você já conhece em CSS: `grid` equivale a `display: grid`, e cada `grid-cols-*` ou `grid-rows-*` define a estrutura base do layout.
+        </p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6">
+        <article class="rounded-2xl border border-slate-200 p-6 space-y-3">
+          <h3 class="text-xl font-semibold">Grid container</h3>
+          <p class="text-sm text-slate-500">Use `grid` para ativar o modo bidimensional. Os filhos viram células que respeitam colunas e linhas.</p>
+          <div class="code-block">
+            <div>&lt;div class="<span class="text-blue-300">grid</span>"&gt;</div>
+            <div class="ml-4">&lt;div&gt;A1&lt;/div&gt;</div>
+            <div class="ml-4">&lt;div&gt;A2&lt;/div&gt;</div>
+            <div>&lt;/div&gt;</div>
+          </div>
+          <p class="text-xs text-slate-400">CSS: `display: grid;`</p>
+        </article>
+        <article class="rounded-2xl border border-slate-200 p-6 space-y-3">
+          <h3 class="text-xl font-semibold">Colunas</h3>
+          <p class="text-sm text-slate-500">`grid-cols-3` divide o grid em três colunas iguais. Pense na repetição `repeat(3, minmax(0, 1fr))` em CSS.</p>
+          <div class="code-block">
+            <div>&lt;div class="<span class="text-blue-300">grid grid-cols-3 gap-4</span>"&gt;</div>
+            <div class="ml-4">&lt;div&gt;1&lt;/div&gt;</div>
+            <div class="ml-4">&lt;div&gt;2&lt;/div&gt;</div>
+            <div class="ml-4">&lt;div&gt;3&lt;/div&gt;</div>
+            <div>&lt;/div&gt;</div>
+          </div>
+          <p class="text-xs text-slate-400">CSS: `grid-template-columns: repeat(3, minmax(0, 1fr));`</p>
+        </article>
+        <article class="rounded-2xl border border-slate-200 p-6 space-y-3">
+          <h3 class="text-xl font-semibold">Linhas</h3>
+          <p class="text-sm text-slate-500">`grid-rows-3` força três linhas; útil quando você quer controlar o tamanho vertical.</p>
+          <div class="code-block">
+            <div>&lt;div class="<span class="text-blue-300">grid grid-rows-3 gap-4</span>"&gt;</div>
+            <div class="ml-4">&lt;div&gt;A&lt;/div&gt;</div>
+            <div class="ml-4">&lt;div&gt;B&lt;/div&gt;</div>
+            <div class="ml-4">&lt;div&gt;C&lt;/div&gt;</div>
+            <div>&lt;/div&gt;</div>
+          </div>
+          <p class="text-xs text-slate-400">CSS: `grid-template-rows: repeat(3, minmax(0, 1fr));`</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="gap-spanning" class="bg-white rounded-3xl shadow-lg border border-slate-200 p-10 space-y-8">
+      <div class="space-y-2 text-center">
+        <p class="text-sm uppercase tracking-[0.5em] text-slate-400">Gap &amp; Spanning</p>
+        <h2 class="text-3xl font-bold">Espaçamento e células maiores</h2>
+        <p class="text-slate-600">
+          `gap` respira entre as células, `col-span` e `row-span` esticam elementos para ocupar mais de uma coluna ou linha. Pense em blocos de notas juntando páginas.
+        </p>
+      </div>
+      <div class="grid md:grid-cols-2 gap-6">
+        <article class="rounded-2xl border border-slate-200 p-6 space-y-3">
+          <h3 class="font-semibold text-lg">Gap</h3>
+          <p class="text-sm text-slate-500">`gap-6` coloca 1.5rem entre colunas e linhas ao mesmo tempo.</p>
+          <div class="code-block">
+            <div>&lt;div class="<span class="text-blue-300">grid grid-cols-3 gap-6</span>"&gt;</div>
+            <div class="ml-4">&lt;div&gt;Card&lt;/div&gt;</div>
+            <div class="ml-4">&lt;div&gt;Card&lt;/div&gt;</div>
+            <div class="ml-4">&lt;div&gt;Card&lt;/div&gt;</div>
+            <div>&lt;/div&gt;</div>
+          </div>
+          <p class="text-xs text-slate-400">CSS: `gap: 1.5rem;`</p>
+        </article>
+        <article class="rounded-2xl border border-slate-200 p-6 space-y-3">
+          <h3 class="font-semibold text-lg">Column span</h3>
+          <p class="text-sm text-slate-500">`col-span-2` faz um cartão largo, ideal para destaque.</p>
+          <div class="code-block">
+            <div>&lt;div class="<span class="text-blue-300">grid grid-cols-4 gap-4</span>"&gt;</div>
+            <div class="ml-4">&lt;div class="<span class="text-blue-100">col-span-2</span>"&gt;Feature&lt;/div&gt;</div>
+            <div class="ml-4">&lt;div&gt;Item&lt;/div&gt;</div>
+            <div>&lt;/div&gt;</div>
+          </div>
+          <p class="text-xs text-slate-400">CSS: `grid-column: span 2 / span 2;`</p>
+        </article>
+      </div>
+      <div class="rounded-2xl border border-slate-200 p-6 space-y-4">
+        <h3 class="text-lg font-semibold">Exemplo real · Layout de blog</h3>
+        <p class="text-sm text-slate-500">Sidebar de apoio e conteúdo principal que ocupa mais espaço com `lg:col-span`.</p>
+        <div class="bg-slate-50 rounded-2xl p-4 space-y-3">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
+            <aside class="lg:col-span-3 bg-white rounded-2xl border border-slate-200 p-4 space-y-3">
+              <p class="text-xs uppercase tracking-[0.3em] text-slate-400">Sidebar</p>
+              <p class="text-sm text-slate-600">Links, filtros e teasers.</p>
+            </aside>
+            <main class="lg:col-span-9 bg-white rounded-2xl border border-slate-200 p-4 space-y-4">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="bg-slate-100 rounded-xl p-4">Card principal</div>
+                <div class="bg-slate-100 rounded-xl p-4">Card secundário</div>
+              </div>
+              <div class="bg-slate-100 rounded-xl p-4">Conteúdo extenso com `col-span` dinamicamente definido.</div>
+            </main>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="template-areas" class="bg-white rounded-3xl shadow-lg border border-slate-200 p-10 space-y-8">
+      <div class="space-y-2 text-center">
+        <p class="text-sm uppercase tracking-[0.5em] text-slate-400">Template Areas</p>
+        <h2 class="text-3xl font-bold">Mapeando áreas nomeadas</h2>
+        <p class="text-slate-600">Ainda que o Tailwind não tenha utilitário direto, você pode complementar com `style` + `@apply` para criar áreas nomeadas.</p>
+      </div>
+      <div class="space-y-4">
+        <div class="code-block">
+          <div>&lt;div class="<span class="text-blue-300">grid grid-cols-4 gap-4</span>" style="grid-template-areas: 'header header header header' 'sidebar main main aside' 'footer footer footer footer';"&gt;</div>
+          <div class="ml-4">&lt;header style="grid-area: header;">Header&lt;/header&gt;</div>
+          <div class="ml-4">&lt;aside style="grid-area: sidebar;">Sidebar&lt;/aside&gt;</div>
+          <div class="ml-4">&lt;main style="grid-area: main;">Conteúdo&lt;/main&gt;</div>
+          <div class="ml-4">&lt;aside style="grid-area: aside;">Destaques&lt;/aside&gt;</div>
+          <div class="ml-4">&lt;footer style="grid-area: footer;">Footer&lt;/footer&gt;</div>
+          <div>&lt;/div&gt;</div>
+        </div>
+        <p class="text-xs text-slate-500">Use `<code>@apply</code>` para mover esse CSS para um arquivo e manter o HTML limpo.</p>
+      </div>
+    </section>
+
+    <section id="autofit" class="bg-white rounded-3xl shadow-lg border border-slate-200 p-10 space-y-8">
+      <div class="space-y-2 text-center">
+        <p class="text-sm uppercase tracking-[0.5em] text-slate-400">Auto-fit / Auto-fill</p>
+        <h2 class="text-3xl font-bold">Galerias fluidas</h2>
+        <p class="text-slate-600">Com `repeat(auto-fit, minmax())` você permite que o grid cresça e encolha com o tamanho da tela sem quebrar o layout.</p>
+      </div>
+      <div class="space-y-4">
+        <div class="code-block">
+          <div>&lt;div class="<span class="text-blue-300">grid gap-4</span>" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));"&gt;</div>
+          <div class="ml-4">&lt;div class="rounded-xl bg-slate-100 p-4"&gt;Card&lt;/div&gt;</div>
+          <div class="ml-4">…</div>
+          <div>&lt;/div&gt;</div>
+        </div>
+        <p class="text-xs text-slate-500">CSS final: `grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));`</p>
+        <div class="grid gap-3 md:grid-cols-3">
+          <div class="bg-white rounded-2xl border border-slate-200 p-4 text-sm text-slate-600">Auto-fit distribui o máximo de colunas possíveis.</div>
+          <div class="bg-white rounded-2xl border border-slate-200 p-4 text-sm text-slate-600">Auto-fill respeita o tamanho mínimo e deixa “espaços vazios”.</div>
+          <div class="bg-white rounded-2xl border border-slate-200 p-4 text-sm text-slate-600">Combine com `minmax()` para definir limites de largura.</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="responsividade" class="bg-white rounded-3xl shadow-lg border border-slate-200 p-10 space-y-8">
+      <div class="space-y-2 text-center">
+        <p class="text-sm uppercase tracking-[0.5em] text-slate-400">Responsividade</p>
+        <h2 class="text-3xl font-bold">Prefixos mobile-first</h2>
+        <p class="text-slate-600">Comece com `grid-cols-1` e depois aumente com `md:grid-cols-2`, `lg:grid-cols-3`, etc.</p>
+      </div>
+      <div class="space-y-4">
+        <div class="code-block">
+          <div>&lt;div class="<span class="text-blue-300">grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4</span>"&gt;</div>
+        </div>
+        <p class="text-sm text-slate-500">Adicione `md:col-span-2` para esticar elementos em telas maiores (por exemplo, destaque em desktop).</p>
+        <div class="grid md:grid-cols-2 gap-4">
+          <div class="bg-slate-100 rounded-2xl border border-slate-200 p-4 text-sm text-slate-600">
+            <strong>Mobile:</strong> 1 coluna e layout vertical.
+          </div>
+          <div class="bg-slate-100 rounded-2xl border border-slate-200 p-4 text-sm text-slate-600">
+            <strong>Desktop:</strong> 3 colunas com cards lado a lado.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="exercicios" class="bg-white rounded-3xl shadow-lg border border-slate-200 p-10 space-y-6">
+      <div class="space-y-2 text-center">
+        <p class="text-sm uppercase tracking-[0.5em] text-slate-400">Exercícios &amp; Reflexão</p>
+        <h2 class="text-3xl font-bold">Pratique como um verdadeiro professor</h2>
+        <p class="text-slate-600">Escreva antes de codar, explicando cada escolha.</p>
+      </div>
+      <div class="grid md:grid-cols-2 gap-6">
+        <article class="rounded-2xl border border-slate-200 p-6 space-y-3">
+          <h3 class="text-xl font-semibold">Exercício 1 · Layout de blog</h3>
+          <ul class="list-disc list-inside text-sm text-slate-600 space-y-1">
+            <li>Grid com `grid-cols-12`.</li>
+            <li>Sidebar `lg:col-span-3`, conteúdo `lg:col-span-9`.</li>
+            <li>`gap-6` para respirabilidade e `lg:gap-8` no desktop.</li>
+          </ul>
+        </article>
+        <article class="rounded-2xl border border-slate-200 p-6 space-y-3">
+          <h3 class="text-xl font-semibold">Exercício 2 · Cartões responsivos</h3>
+          <ul class="list-disc list-inside text-sm text-slate-600 space-y-1">
+            <li>Use `repeat(auto-fit, minmax(220px, 1fr))`.</li>
+            <li>Combine `gap-x-6` e `gap-y-4` para eixos diferentes.</li>
+            <li>Destaque o card principal com `col-span` em `lg:`.</li>
+          </ul>
+        </article>
+      </div>
+      <div class="rounded-2xl border border-slate-200 p-6">
+        <h3 class="text-lg font-semibold text-blue-600">Reflexão</h3>
+        <p class="text-sm text-slate-600">Quando escolher Grid e quando usar Flexbox dentro de cada célula? Que prefixos tornariam o layout mais poderoso sem comprometer a legibilidade?</p>
+      </div>
+    </section>
+
+    <section id="conexao-css" class="bg-white rounded-3xl shadow-lg border border-slate-200 p-10">
+      <div class="space-y-2 text-center">
+        <p class="text-sm uppercase tracking-[0.5em] text-slate-400">Conexão com CSS puro</p>
+        <h2 class="text-2xl font-bold">Cada classe conversa com o que você já conhece</h2>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6 text-sm text-slate-600 mt-6">
+        <div class="space-y-3 rounded-2xl border border-slate-200 p-4">
+          <p class="font-semibold text-slate-800">Grid container</p>
+          <p>`grid` = `display: grid`</p>
+          <p>`grid-cols-3` = `grid-template-columns: repeat(3, minmax(0, 1fr))`</p>
+        </div>
+        <div class="space-y-3 rounded-2xl border border-slate-200 p-4">
+          <p class="font-semibold text-slate-800">Spanning</p>
+          <p>`col-span-2` = `grid-column: span 2 / span 2`</p>
+          <p>`row-span-3` = `grid-row: span 3 / span 3`</p>
+        </div>
+        <div class="space-y-3 rounded-2xl border border-slate-200 p-4">
+          <p class="font-semibold text-slate-800">Gap e alinhamento</p>
+          <p>`gap-6` = `gap: 1.5rem`</p>
+          <p>`place-items-center` = `place-items: center`</p>
+        </div>
+      </div>
+      <div class="mt-6 flex flex-wrap justify-center gap-4">
+        <a href="../../curso/4-css-grid/01-aula-principal.md" class="px-5 py-2 border border-blue-600 text-blue-600 rounded-full text-sm hover:bg-blue-50 transition-colors">Ver o roteiro original</a>
+        <a href="../aula-05-responsividade/index.html" class="px-5 py-2 bg-blue-600 text-white rounded-full text-sm hover:bg-blue-500 transition-colors">Próxima aula: Responsividade →</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-slate-900 text-slate-300 py-10 mt-10">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
+      <p class="text-sm">Como professor, reforço: leve cada conceito para o caderno e conecte com o CSS puro. O Grid fará sentido quando o estudante praticar e comparar.</p>
+      <p class="text-xs text-slate-500">&copy; <script>document.write(new Date().getFullYear());</script> - Curso Didático Tailwind CSS</p>
+      <a href="../index.html" class="text-sm text-blue-400 hover:text-blue-200 underline">Voltar ao índice de aulas</a>
+    </div>
+  </footer>
+
+  <script>
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(event) {
+        event.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
+
