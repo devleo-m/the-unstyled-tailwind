@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aula 5: Responsividade com Tailwind CSS</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .code-block {
+      background: #0f172a;
+      color: #e2e8f0;
+      padding: 1rem;
+      border-radius: 0.75rem;
+      font-family: 'Courier New', monospace;
+      font-size: 0.85rem;
+      overflow-x: auto;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+    }
+    .badge {
+      background: rgba(59, 130, 246, 0.15);
+      border: 1px solid rgba(59, 130, 246, 0.5);
+      border-radius: 999px;
+      padding: 0.25rem 0.9rem;
+      font-size: 0.75rem;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-900">
+  <nav class="bg-white shadow sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <a href="../index.html" class="text-lg font-semibold text-blue-600 hover:text-blue-500 transition-colors">← Voltar</a>
+        <div class="flex items-center gap-3">
+          <span class="px-3 py-1 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full text-sm font-semibold shadow">Aula 5</span>
+          <p class="text-sm text-slate-500">Responsividade do zero</p>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <header class="bg-gradient-to-br from-blue-700 via-slate-800 to-slate-900 text-white py-20">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
+      <p class="uppercase tracking-[0.5em] text-xs text-blue-200">Professor CSS Tailwind</p>
+      <h1 class="text-4xl md:text-5xl font-bold">Aula 5 · Responsividade com Tailwind CSS</h1>
+      <p class="text-lg text-blue-100">
+        Nesta aula explicamos como o Tailwind transforma media queries em prefixos claros, mantendo o foco em mobile-first e tornando cada ajuste previsível.
+      </p>
+      <div class="flex flex-wrap justify-center gap-3">
+        <span class="badge">mobile-first</span>
+        <span class="badge">breakpoints</span>
+        <span class="badge">prefixos</span>
+        <span class="badge">container</span>
+      </div>
+      <p class="text-base text-blue-100 max-w-3xl mx-auto">
+        Cada seção abaixo ensina com analogias simples, exemplos comparando Tailwind e CSS puro, e códigos prontos para seguir como professor da própria jornada.
+      </p>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-12">
+    <section id="revisao" class="bg-white rounded-3xl shadow-lg border border-slate-200 p-10 space-y-8">
+      <div class="space-y-2 text-center">
+        <p class="text-sm uppercase tracking-[0.5em] text-slate-400">Revisão</p>
+        <h2 class="text-3xl font-bold">O que é responsividade?</h2>
+        <p class="text-slate-600">
+          Responsividade significa fazer o site responder ao tamanho da tela. Em CSS puro você encaixa media queries, no Tailwind basta adicionar prefixos como `md:` e `lg:`.
+        </p>
+      </div>
+      <div class="grid md:grid-cols-2 gap-6">
+        <article class="rounded-2xl border border-slate-200 p-6 space-y-3">
+          <h3 class="text-xl font-semibold">CSS Puro</h3>
+          <p class="text-sm text-slate-500">Você escreve media queries com `min-width` ou `max-width` e controla padding, fontes e layout manualmente.</p>
+          <div class="code-block">
+            <div>/* Mobile first */</div>
+            <div>.container { width: 100%; padding: 1rem; }</div>
+            <div>@media (min-width: 768px) { .container { padding: 2rem; } }</div>
+            <div>@media (min-width: 1024px) { .container { padding: 3rem; } }</div>
+          </div>
+        </article>
+        <article class="rounded-2xl border border-slate-200 p-6 space-y-3">
+          <h3 class="text-xl font-semibold">Tailwind</h3>
+          <p class="text-sm text-slate-500">O mesmo efeito acontece adicionando classes com prefixos: o estilo sem prefixo é mobile, e `md:`/`lg:` ativam estilos maiores.</p>
+          <div class="code-block">
+            <div>&lt;div class="<span class="text-blue-300">p-4 md:p-8 lg:p-12</span>"&gt;Conteúdo&lt;/div&gt;</div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="filosofia" class="bg-white rounded-3xl shadow-lg border border-slate-200 p-10 space-y-6">
+      <div class="space-y-2 text-center">
+        <p class="text-sm uppercase tracking-[0.5em] text-slate-400">Filosofia</p>
+        <h2 class="text-3xl font-bold">Mobile-First em ação</h2>
+      </div>
+      <div class="grid lg:grid-cols-2 gap-6">
+        <div class="space-y-3 rounded-2xl border border-slate-200 p-6">
+          <h3 class="text-lg font-semibold">Por que começar pequeno?</h3>
+          <ul class="list-disc list-inside text-sm text-slate-600 space-y-1">
+            <li>Mobile domina o acesso hoje.</li>
+            <li>Performance melhora se você não carrega estilos pesados desnecessários.</li>
+            <li>Adicionar complexidade gradualmente evita confusão.</li>
+          </ul>
+        </div>
+        <div class="space-y-3 rounded-2xl border border-slate-200 p-6">
+          <h3 class="text-lg font-semibold">Prefixos responsivos</h3>
+          <p class="text-sm text-slate-600">Use `[breakpoint]:[classe]`. O Tailwind aplica em cascata: primeiro mobile (sem prefixo), depois `sm`, `md`, `lg`, `xl` e `2xl`.</p>
+          <div class="code-block">
+            <div>&lt;div class="<span class="text-blue-300">text-sm md:text-base lg:text-lg</span>"&gt;Texto responsivo&lt;/div&gt;</div>
+          </div>
+        </div>
+      </div>
+      <div class="rounded-2xl border border-slate-200 p-6 space-y-2 bg-slate-50">
+        <p class="text-sm text-slate-500">Ordem importa: sempre comece com o estilo mobile e siga os breakpoints em ordem crescente para que o Tailwind sobreponha corretamente.</p>
+      </div>
+    </section>
+
+    <section id="breakpoints" class="bg-white rounded-3xl shadow-lg border border-slate-200 p-10 space-y-6">
+      <div class="space-y-2 text-center">
+        <p class="text-sm uppercase tracking-[0.5em] text-slate-400">Breakpoints</p>
+        <h2 class="text-3xl font-bold">Padrões prontos para usar</h2>
+      </div>
+      <div class="overflow-x-auto rounded-2xl border border-slate-200">
+        <table class="min-w-full text-sm text-left">
+          <thead class="bg-slate-100 text-slate-500 uppercase text-xs">
+            <tr>
+              <th class="px-4 py-3">Prefixo</th>
+              <th class="px-4 py-3">Tamanho</th>
+              <th class="px-4 py-3">Uso comum</th>
+            </tr>
+          </thead>
+          <tbody class="text-slate-600">
+            <tr class="border-t border-slate-100">
+              <td class="px-4 py-3">(sem prefixo)</td>
+              <td class="px-4 py-3">&lt; 640px</td>
+              <td class="px-4 py-3">Mobile</td>
+            </tr>
+            <tr class="border-t border-slate-100">
+              <td class="px-4 py-3">sm:</td>
+              <td class="px-4 py-3">≥ 640px</td>
+              <td class="px-4 py-3">Smartphones grandes</td>
+            </tr>
+            <tr class="border-t border-slate-100">
+              <td class="px-4 py-3">md:</td>
+              <td class="px-4 py-3">≥ 768px</td>
+              <td class="px-4 py-3">Tablets</td>
+            </tr>
+            <tr class="border-t border-slate-100">
+              <td class="px-4 py-3">lg:</td>
+              <td class="px-4 py-3">≥ 1024px</td>
+              <td class="px-4 py-3">Desktops</td>
+            </tr>
+            <tr class="border-t border-slate-100">
+              <td class="px-4 py-3">xl:</td>
+              <td class="px-4 py-3">≥ 1280px</td>
+              <td class="px-4 py-3">Desktops grandes</td>
+            </tr>
+            <tr class="border-t border-slate-100">
+              <td class="px-4 py-3">2xl:</td>
+              <td class="px-4 py-3">≥ 1536px</td>
+              <td class="px-4 py-3">Telas muito grandes</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="rounded-2xl border border-slate-200 p-6 space-y-3">
+        <p class="text-sm text-slate-600">Os valores vêm do `tailwind.config.js`. Se você abrir, verá `screens: { sm: '640px', md: '768px', ... }`. Pode estender ou substituir esses valores, dependendo da necessidade.</p>
+        <div class="code-block">
+          <div>// tailwind.config.js</div>
+          <div>screens: {'{'}</div>
+          <div>  'sm': '640px',</div>
+          <div>  'md': '768px',</div>
+          <div>  'lg': '1024px',</div>
+          <div>  'xl': '1280px',</div>
+          <div>  '2xl': '1536px',</div>
+          <div>{'}'}</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="propriedades" class="bg-white rounded-3xl shadow-lg border border-slate-200 p-10 space-y-8">
+      <div class="space-y-2 text-center">
+        <p class="text-sm uppercase tracking-[0.5em] text-slate-400">Responsividade prática</p>
+        <h2 class="text-3xl font-bold">Ajustando propriedades chave</h2>
+        <p class="text-slate-600">Padding, margem, tipografia, layout e cores ganham prefixos que escalam com a tela.</p>
+      </div>
+      <div class="grid md:grid-cols-2 gap-6">
+        <article class="rounded-2xl border border-slate-200 p-6 space-y-3">
+          <h3 class="text-xl font-semibold">Espaçamento responsivo</h3>
+          <p class="text-sm text-slate-500">Use `sm:`, `md:` etc. em `p-`, `m-` e `gap-` para manipular cartões, grids e stacks.</p>
+          <div class="code-block">
+            <div>&lt;div class="<span class="text-blue-300">p-2 md:p-6 lg:p-8</span> gap-2 md:gap-4 lg:gap-6"&gt;...</div>
+          </div>
+        </article>
+        <article class="rounded-2xl border border-slate-200 p-6 space-y-3">
+          <h3 class="text-xl font-semibold">Tipografia responsiva</h3>
+          <p class="text-sm text-slate-500">Tamanhos, peso e altura mudam de acordo com o breakpoint.</p>
+          <div class="code-block">
+            <div>&lt;h1 class="<span class="text-blue-300">text-2xl sm:text-3xl md:text-4xl lg:text-5xl</span>"&gt;Título&lt;/h1&gt;</div>
+            <div>&lt;p class="<span class="text-blue-300">text-sm ld:text-base md:text-lg</span> leading-relaxed"&gt;Parágrafo&lt;/p&gt;</div>
+          </div>
+        </article>
+        <article class="rounded-2xl border border-slate-200 p-6 space-y-3">
+          <h3 class="text-xl font-semibold">Layout responsivo</h3>
+          <p class="text-sm text-slate-500">Transforme `flex` e `grid` com prefixos para reorganizar pilhas e colunas.</p>
+          <div class="code-block">
+            <div>&lt;div class="<span class="text-blue-300">flex flex-col md:flex-row lg:grid lg:grid-cols-3</span>"&gt;</div>
+          </div>
+        </article>
+        <article class="rounded-2xl border border-slate-200 p-6 space-y-3">
+          <h3 class="text-xl font-semibold">Cores e visibilidade</h3>
+          <p class="text-sm text-slate-500">Mude backgrounds, opacidade e visibilidade conforme o breakpoint para destacar ou esconder elementos.</p>
+          <div class="code-block">
+            <div>&lt;div class="<span class="text-blue-300">bg-blue-500 md:bg-green-500 lg:bg-purple-500</span> hidden md:block"&gt;Banner&lt;/div&gt;</div>
+          </div>
+        </article>
+      </div>
+      <div class="rounded-2xl border border-slate-200 p-6 space-y-2 bg-slate-50">
+        <p class="text-sm text-slate-500">Lembre-se: `md:hidden` e `md:block` ativam ou escondem elementos e são ótimos para alternar menus e controles.</p>
+      </div>
+    </section>
+
+    <section id="custom" class="bg-white rounded-3xl shadow-lg border border-slate-200 p-10 space-y-6">
+      <div class="space-y-2 text-center">
+        <p class="text-sm uppercase tracking-[0.5em] text-slate-400">Customização</p>
+        <h2 class="text-3xl font-bold">Breakpoints e container personalizados</h2>
+      </div>
+      <p class="text-slate-600">
+        Se o projeto exige valores diferentes, você pode estender os `screens` no `tailwind.config.js` ou redefinir a classe `.container` para centralizar e aplicar padding automático.
+      </p>
+      <div class="code-block">
+        <div>module.exports = {'{'}</div>
+        <div>  theme: {'{'}</div>
+        <div>    extend: {'{'}</div>
+        <div>      screens: {'{'}</div>
+        <div>        'xs': '475px',</div>
+        <div>        '3xl': '1920px',</div>
+        <div>      {'}'}</div>
+        <div>    {'}'}</div>
+        <div>  {'}'}</div>
+        <div>{'}'}</div>
+      </div>
+      <p class="text-slate-600">
+        Depois, use `xs:p-6` ou `3xl:px-12` para aplicar novas paradas. A classe `.container` também respeita esses breakpoints e pode ganhar `padding` extra.
+      </p>
+    </section>
+
+    <section id="variantes" class="bg-white rounded-3xl shadow-lg border border-slate-200 p-10 space-y-6">
+      <div class="space-y-2 text-center">
+        <p class="text-sm uppercase tracking-[0.5em] text-slate-400">Variantes responsivas</p>
+        <h2 class="text-3xl font-bold">Combinando hover, focus e prefixos</h2>
+      </div>
+      <div class="space-y-4">
+        <div class="code-block">
+          <div>&lt;button class="<span class="text-blue-300">bg-blue-500 hover:bg-blue-600 md:hover:bg-blue-700</span>"&gt;CTA&lt;/button&gt;</div>
+        </div>
+        <div class="code-block">
+          <div>&lt;input class="<span class="text-blue-300">border focus:border-blue-500 md:focus:ring-2</span>" /&gt;</div>
+        </div>
+        <p class="text-sm text-slate-600">Você combina qualquer variante (`hover:`, `focus:`, `disabled:`) com breakpoints e o Tailwind resolve a ordem automaticamente.</p>
+      </div>
+    </section>
+
+    <section id="debugging" class="bg-white rounded-3xl shadow-lg border border-slate-200 p-10 space-y-6">
+      <div class="space-y-2 text-center">
+        <p class="text-sm uppercase tracking-[0.5em] text-slate-400">Debug</p>
+        <h2 class="text-3xl font-bold">Como testar responsividade</h2>
+      </div>
+      <div class="space-y-4 text-sm text-slate-600">
+        <p>Abra o DevTools, ative o modo responsivo (Cmd+Shift+M) e simule diferentes breakpoints. Observe as classes aplicadas para entender o que muda.</p>
+        <p>Você também pode inspecionar o CSS gerado para ver as media queries equivalentes e confirmar se os prefixos seguem a ordem correta.</p>
+      </div>
+      <div class="code-block">
+        <div>@media (min-width: 768px) {'{'}</div>
+        <div>  .md\:p-8 {'{'} padding: 2rem; {'}'}</div>
+        <div>{'}'}</div>
+      </div>
+    </section>
+
+    <section id="exercicios" class="bg-white rounded-3xl shadow-lg border border-slate-200 p-10 space-y-8">
+      <div class="space-y-2 text-center">
+        <p class="text-sm uppercase tracking-[0.5em] text-slate-400">Exercícios & reflexões</p>
+        <h2 class="text-3xl font-bold">Pratique e pense como professor</h2>
+      </div>
+      <div class="grid lg:grid-cols-2 gap-6">
+        <article class="rounded-2xl border border-slate-200 p-6 space-y-3">
+          <h3 class="text-xl font-semibold">Card de produto responsivo</h3>
+          <p class="text-sm text-slate-500">Padding, fontes e layout ajustam com `sm:`, `md:` e `lg:`. Botão e preço mudam de coluna para linha.</p>
+          <ul class="list-disc list-inside text-xs text-slate-500 space-y-1">
+            <li>Use `p-4 md:p-6 lg:p-8`, `text-lg md:text-xl lg:text-2xl` e `h-32 md:h-48 lg:h-64`.</li>
+            <li>Combine `flex flex-col sm:flex-row` para o bloco de preço.</li>
+            <li>Implemente `bg-white rounded-lg shadow-md` para o visual.</li>
+          </ul>
+        </article>
+        <article class="rounded-2xl border border-slate-200 p-6 space-y-3">
+          <h3 class="text-xl font-semibold">Grid de cards</h3>
+          <p class="text-sm text-slate-500">Quantas colunas devem aparecer em cada breakpoint? Comece com 1 e vá até 4 no `xl`.</p>
+          <ul class="list-disc list-inside text-xs text-slate-500 space-y-1">
+            <li>`grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4`</li>
+            <li>`gap-4 md:gap-6 lg:gap-8` para respirabilidade</li>
+            <li>Cards usam `bg-white p-4 md:p-6 rounded-lg shadow`.</li>
+          </ul>
+        </article>
+        <article class="rounded-2xl border border-slate-200 p-6 space-y-3">
+          <h3 class="text-xl font-semibold">Navegação responsiva</h3>
+          <p class="text-sm text-slate-500">Hamburger aparece só em mobile e menu horizontal só em desktop.</p>
+          <ul class="list-disc list-inside text-xs text-slate-500 space-y-1">
+            <li>`hidden md:flex` para o menu e `block md:hidden` para o botão.</li>
+            <li>Use `bg-blue-900 text-white` e `hover:text-blue-200`.</li>
+            <li>Container com `flex justify-between items-center`.</li>
+          </ul>
+        </article>
+        <article class="rounded-2xl border border-slate-200 p-6 space-y-3">
+          <h3 class="text-xl font-semibold">Hero responsiva</h3>
+          <p class="text-sm text-slate-500">Título, subtítulo e botão crescem e o padding aumenta.</p>
+          <ul class="list-disc list-inside text-xs text-slate-500 space-y-1">
+            <li>`text-3xl md:text-5xl lg:text-7xl` para o título</li>
+            <li>`py-8 md:py-16 lg:py-24` para o espaçamento vertical</li>
+            <li>Botão com `px-4 py-2 md:px-6 md:py-3 lg:px-8 lg:py-4`</li>
+          </ul>
+        </article>
+      </div>
+      <div class="rounded-2xl border border-slate-200 p-6 space-y-3 bg-slate-50">
+        <h3 class="text-lg font-semibold text-slate-700">Reflexão para o quadro</h3>
+        <p class="text-sm text-slate-600">Que decisões de breakpoint são essenciais para o projeto? Quando você precisa extender os valores padrão? Como garantir que o CSS gerado continue enxuto?</p>
+      </div>
+    </section>
+
+    <section id="resumo" class="bg-white rounded-3xl shadow-lg border border-slate-200 p-10 space-y-4">
+      <div class="space-y-2 text-center">
+        <p class="text-sm uppercase tracking-[0.5em] text-slate-400">Resumo</p>
+        <h2 class="text-3xl font-bold">O que ficamos</h2>
+      </div>
+      <ul class="space-y-2 text-sm text-slate-600">
+        <li>Tailwind usa mobile-first: tudo começa sem prefixo e evolui com `sm:`, `md:`, `lg:`.</li>
+        <li>Breakpoints padrão cobrem quase todo o espectro, mas podem ser estendidos no `tailwind.config.js`.</li>
+        <li>Espaçamento, tipografia, grid e cores respondem com prefixos e mantêm o HTML legível.</li>
+        <li>Combine variantes (`hover`, `focus`) com prefixos para controles responsivos.</li>
+        <li>Use DevTools para inspecionar quais classes estão sendo aplicadas em cada breakpoint.</li>
+      </ul>
+      <div class="grid md:grid-cols-2 gap-4 text-sm text-slate-600">
+        <div class="rounded-2xl border border-slate-200 p-4 bg-slate-50">
+          <p class="font-semibold text-slate-800">CSS → Tailwind</p>
+          <p>`@media (min-width: 768px) { padding: 2rem; }` → `md:p-8`</p>
+          <p>`display: flex; flex-direction: row;` → `md:flex md:flex-row`</p>
+        </div>
+        <div class="rounded-2xl border border-slate-200 p-4 bg-slate-50">
+          <p class="font-semibold text-slate-800">Próximos passos</p>
+          <p>Na próxima aula mergulhamos em estados e interatividade: `hover:`, `focus:` e transições.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="conexao-css" class="bg-white rounded-3xl shadow-lg border border-slate-200 p-10">
+      <div class="space-y-2 text-center">
+        <p class="text-sm uppercase tracking-[0.5em] text-slate-400">Conexão com CSS puro</p>
+        <h2 class="text-2xl font-bold">Cada classe tem um par no CSS</h2>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6 text-sm text-slate-600 mt-6">
+        <div class="space-y-3 rounded-2xl border border-slate-200 p-4">
+          <p class="font-semibold text-slate-800">Padding & Gap</p>
+          <p>`md:p-8` = `@media (min-width: 768px) { padding: 2rem; }`</p>
+          <p>`lg:gap-6` = `@media (min-width: 1024px) { gap: 1.5rem; }`</p>
+        </div>
+        <div class="space-y-3 rounded-2xl border border-slate-200 p-4">
+          <p class="font-semibold text-slate-800">Tipografia</p>
+          <p>`sm:text-base` = `@media (min-width: 640px) { font-size: 1rem; }`</p>
+          <p>`lg:text-3xl` = `@media (min-width: 1024px) { font-size: 1.875rem; }`</p>
+        </div>
+        <div class="space-y-3 rounded-2xl border border-slate-200 p-4">
+          <p class="font-semibold text-slate-800">Visibilidade</p>
+          <p>`md:hidden` = `@media (min-width: 768px) { display: none; }`</p>
+          <p>`md:block` = `@media (min-width: 768px) { display: block; }`</p>
+        </div>
+      </div>
+      <div class="mt-6 flex flex-wrap justify-center gap-4">
+        <a href="../../curso/5-responsividade/01-aula-principal.md" class="px-5 py-2 border border-blue-600 text-blue-600 rounded-full text-sm hover:bg-blue-50 transition-colors">Ver o roteiro original</a>
+        <a href="../aula-06-estados-interatividade/index.html" class="px-5 py-2 bg-blue-600 text-white rounded-full text-sm hover:bg-blue-500 transition-colors">Próxima aula: Estados e Interatividade →</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-slate-900 text-slate-300 py-10 mt-10">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
+      <p class="text-sm">Como professor, reforço: use o mobile-first para pensar em dispositivos reais e compare sempre com o CSS puro que você já domina.</p>
+      <p class="text-xs text-slate-500">&copy; <script>document.write(new Date().getFullYear());</script> - Curso Didático Tailwind CSS</p>
+      <a href="../index.html" class="text-sm text-blue-400 hover:text-blue-200 underline">Voltar ao índice de aulas</a>
+    </div>
+  </footer>
+
+  <script>
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(event) {
+        event.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
+
