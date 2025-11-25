@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aula 3: Layout com Tailwind CSS - Projeto Prático</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .code-block {
+      background: #1e293b;
+      color: #e2e8f0;
+      padding: 1rem;
+      border-radius: 0.5rem;
+      font-family: 'Courier New', monospace;
+      font-size: 0.875rem;
+      overflow-x: auto;
+    }
+    .highlight {
+      background: yellow;
+      padding: 2px 4px;
+      border-radius: 2px;
+    }
+    .layout-pill {
+      background: rgba(255, 255, 255, 0.15);
+      padding: 0.35rem 0.9rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+    }
+  </style>
+</head>
+<body class="bg-gray-50">
+  <nav class="bg-white shadow-md sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+        <a href="../index.html" class="text-xl font-bold text-blue-600 hover:text-blue-700 transition-colors">
+          ← Voltar
+        </a>
+        <div class="flex items-center space-x-2">
+          <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-semibold">
+            Aula 3
+          </span>
+          <span class="text-gray-600">Layout: Display, Position e Flexbox</span>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <section class="bg-gradient-to-br from-slate-900 via-purple-800 to-indigo-600 text-white py-20">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="text-5xl font-bold mb-6">Aula 3: Layout com Tailwind CSS</h1>
+      <p class="text-xl mb-8 text-slate-100">
+        Controle o posicionamento, direções e camadas da interface com as utilities de layout do Tailwind, sempre conectando cada classe ao CSS que você já domina.
+      </p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <span class="layout-pill">Display</span>
+        <span class="layout-pill">Position</span>
+        <span class="layout-pill">Flexbox</span>
+        <span class="layout-pill">Layouts reais</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- DISPLAY SECTION -->
+  <section id="display" class="py-16 bg-white">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-4xl font-bold text-slate-900 mb-4">Display Utilities</h2>
+        <p class="text-lg text-slate-600 max-w-3xl mx-auto">
+          O Tailwind traduz cada comportamento de <code class="font-mono">display</code> em classes curtas. Nesta aula, mapeamos cada tipo de comportamento para o CSS tradicional.
+        </p>
+      </div>
+
+      <div class="grid lg:grid-cols-3 gap-6 mb-6">
+        <article class="bg-slate-50 rounded-2xl border border-slate-200 p-6 shadow-sm flex flex-col gap-3">
+          <span class="text-xs font-semibold uppercase tracking-widest text-slate-400">Display</span>
+          <h3 class="text-2xl font-bold text-slate-900">Block</h3>
+          <p class="text-slate-600">
+            A classe <code class="font-mono text-sm text-yellow-500">block</code> força o elemento a preencher a largura disponível e quebrar linha antes e depois.
+          </p>
+          <div class="code-block text-sm">
+            <div>&lt;div class="<span class="text-yellow-300">block w-full</span>"&gt;...</div>
+            <div>  Conteúdo</div>
+            <div>&lt;/div&gt;</div>
+          </div>
+          <p class="text-sm text-slate-500">
+            Equivalente CSS: <code class="font-mono">display: block;</code>
+          </p>
+          <p class="text-sm text-slate-500">
+            Analogia: uma pessoa com os braços abertos que ocupa toda a largura da fila.
+          </p>
+        </article>
+
+        <article class="bg-slate-50 rounded-2xl border border-slate-200 p-6 shadow-sm flex flex-col gap-3">
+          <span class="text-xs font-semibold uppercase tracking-widest text-slate-400">Display</span>
+          <h3 class="text-2xl font-bold text-slate-900">Inline</h3>
+          <p class="text-slate-600">
+            <code class="font-mono text-sm text-yellow-500">inline</code> deixa o elemento fluir ao lado dos outros e limita largura ao conteúdo.
+          </p>
+          <div class="code-block text-sm">
+            <div>&lt;span class="<span class="text-yellow-300">inline</span>"&gt;Link&lt;/span&gt;</div>
+          </div>
+          <p class="text-sm text-slate-500">
+            Equivalente CSS: <code class="font-mono">display: inline;</code>
+          </p>
+          <p class="text-sm text-slate-500">
+            Analogia: alguém normal na fila do banco, ocupando só o espaço que precisa.
+          </p>
+        </article>
+
+        <article class="bg-slate-50 rounded-2xl border border-slate-200 p-6 shadow-sm flex flex-col gap-3">
+          <span class="text-xs font-semibold uppercase tracking-widest text-slate-400">Display</span>
+          <h3 class="text-2xl font-bold text-slate-900">Inline-block</h3>
+          <p class="text-slate-600">
+            <code class="font-mono text-sm text-yellow-500">inline-block</code> combina o melhor do block e do inline: respeita largura e altura, mas não quebra linha automaticamente.
+          </p>
+          <div class="code-block text-sm">
+            <div>&lt;div class="<span class="text-yellow-300">inline-block w-32 h-20</span>"&gt;Caixa&lt;/div&gt;</div>
+          </div>
+          <p class="text-sm text-slate-500">
+            Equivalente CSS: <code class="font-mono">display: inline-block;</code>
+          </p>
+          <p class="text-sm text-slate-500">
+            Analogia: uma pessoa que aceita largura e altura, mas ainda pode ficar ao lado de outras.
+          </p>
+        </article>
+      </div>
+
+      <div class="grid lg:grid-cols-3 gap-6">
+        <article class="bg-slate-50 rounded-2xl border border-slate-200 p-6 shadow-sm flex flex-col gap-3">
+          <span class="text-xs font-semibold uppercase tracking-widest text-slate-400">Display</span>
+          <h3 class="text-2xl font-bold text-slate-900">Flex</h3>
+          <p class="text-slate-600">
+            <code class="font-mono text-sm text-yellow-500">flex</code> ativa o modo Flexbox e transforma os filhos em flex items com controle fino de direções, alinhamento e distribuição.
+          </p>
+          <div class="code-block text-sm">
+            <div>&lt;div class="<span class="text-yellow-300">flex gap-4</span>"&gt;</div>
+            <div class="ml-4">&lt;div&gt;Item 1&lt;/div&gt;</div>
+            <div class="ml-4">&lt;div&gt;Item 2&lt;/div&gt;</div>
+            <div>&lt;/div&gt;</div>
+          </div>
+          <p class="text-sm text-slate-500">
+            Equivalente CSS: <code class="font-mono">display: flex;</code>
+          </p>
+          <p class="text-sm text-slate-500">
+            Analogia: um organizador de fila que decide direção, distribuição e alinhamento.
+          </p>
+        </article>
+
+        <article class="bg-slate-50 rounded-2xl border border-slate-200 p-6 shadow-sm flex flex-col gap-3">
+          <span class="text-xs font-semibold uppercase tracking-widest text-slate-400">Display</span>
+          <h3 class="text-2xl font-bold text-slate-900">Grid</h3>
+          <p class="text-slate-600">
+            <code class="font-mono text-sm text-yellow-500">grid</code> ativa o layout bidimensional. Combinamos posteriormente colunas, linhas e gaps.
+          </p>
+          <div class="code-block text-sm">
+            <div>&lt;div class="<span class="text-yellow-300">grid grid-cols-3 gap-4</span>"&gt;</div>
+            <div class="ml-4">&lt;div&gt;Celula&lt;/div&gt;</div>
+            <div class="ml-4">&lt;/div&gt;</div>
+            <div>&lt;/div&gt;</div>
+          </div>
+          <p class="text-sm text-slate-500">
+            Equivalente CSS: <code class="font-mono">display: grid;</code>
+          </p>
+          <p class="text-sm text-slate-500">
+            Nota: aprofundamos Grid na próxima aula, mas já entendemos o comando base.
+          </p>
+        </article>
+
+        <article class="bg-slate-50 rounded-2xl border border-slate-200 p-6 shadow-sm flex flex-col gap-3">
+          <span class="text-xs font-semibold uppercase tracking-widest text-slate-400">Display</span>
+          <h3 class="text-2xl font-bold text-slate-900">Hidden</h3>
+          <p class="text-slate-600">
+            <code class="font-mono text-sm text-yellow-500">hidden</code> remove o elemento do fluxo, assim como <code class="font-mono">display: none</code>.
+          </p>
+          <div class="code-block text-sm">
+            <div>&lt;div class="<span class="text-yellow-300">hidden</span>"&gt;Escondido&lt;/div&gt;</div>
+          </div>
+          <p class="text-sm text-slate-500">
+            Equivalente CSS: <code class="font-mono">display: none;</code>
+          </p>
+          <p class="text-sm text-slate-500">
+            Lembre: <code class="font-mono">invisible</code> mantém o espaço e <code class="font-mono">opacity-0</code> apenas tira a opacidade.
+          </p>
+        </article>
+      </div>
+
+      <div class="mt-10 bg-gradient-to-r from-blue-50 to-purple-50 border border-blue-100 rounded-2xl p-6 text-slate-700">
+        <p>
+          A chave para dominar layout é mapear mentalmente cada classe para o CSS equivalente. Lembre-se: <code class="font-mono">block</code> é a base, <code class="font-mono">inline</code> é leve, e <code class="font-mono">flex/grid</code> são ferramentas poderosas para organizar filas e quadros.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- POSITION SECTION -->
+  <section id="posicao" class="py-16 bg-slate-50">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-4xl font-bold text-slate-900 mb-4">Position Utilities e Camadas</h2>
+        <p class="text-lg text-slate-600 max-w-3xl mx-auto">
+          Agora você controla a posição dos elementos. As classes <code class="font-mono">position</code>, <code class="font-mono">top</code>/<code class="font-mono">right</code> e <code class="font-mono">z-index</code> são os instrumentos principais para compor layouts dinâmicos.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-6">
+        <article class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm flex flex-col gap-3">
+          <h3 class="text-2xl font-bold text-slate-900">Static & Relative</h3>
+          <p class="text-slate-600">
+            <code class="font-mono">static</code> é o padrão: o elemento fica exatamente onde está no fluxo. <code class="font-mono">relative</code> permite deslocamentos sem remover o espaço dele do layout.
+          </p>
+          <div class="code-block text-sm">
+            <div>&lt;div class="<span class="text-yellow-300">relative top-4 left-4</span>"&gt;Desliza sem quebrar o fluxo&lt;/div&gt;</div>
+          </div>
+          <p class="text-sm text-slate-500">
+            Equivalente CSS: <code class="font-mono">position: relative; top: 1rem; left: 1rem;</code>
+          </p>
+          <p class="text-sm text-slate-500">
+            Use <code class="font-mono">relative</code> sempre que quiser servir de referência para elementos <code class="font-mono">absolute</code>.
+          </p>
+        </article>
+
+        <article class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm flex flex-col gap-3">
+          <h3 class="text-2xl font-bold text-slate-900">Absolute, Fixed e Sticky</h3>
+          <p class="text-slate-600">
+            <code class="font-mono">absolute</code> remove o elemento do fluxo e posiciona em relação ao ancestral com <code class="font-mono">position</code> diferente de <code class="font-mono">static</code>. <code class="font-mono">fixed</code> trava o componente na viewport e <code class="font-mono">sticky</code> "gruda" depois de rolar.
+          </p>
+          <ul class="text-sm text-slate-500 space-y-1">
+            <li>Absolute: use <code class="font-mono">top-4 right-4</code> para encaixar cantos.</li>
+            <li>Fixed: ótimo para headers persistentes; combine <code class="font-mono">w-full</code> e <code class="font-mono">top-0</code>.</li>
+            <li>Sticky: mescla <code class="font-mono">relative</code> + <code class="font-mono">fixed</code> — o elemento permanece no fluxo até atingir o limite.</li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="mt-10 lg:flex lg:items-center lg:gap-6">
+        <div class="flex-1 bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
+          <h3 class="text-xl font-semibold text-slate-800 mb-3">Top, Right, Bottom, Left e Insets</h3>
+          <p class="text-slate-600 text-sm mb-4">
+            As classes <code class="font-mono">top-{valor}</code>, <code class="font-mono">right-{valor}</code> etc. recebem números, frações e negativos. Use também <code class="font-mono">inset-0</code>, <code class="font-mono">inset-x-0</code> e <code class="font-mono">inset-y-0</code> para economizar digitação.
+          </p>
+          <div class="code-block text-sm">
+            <div>&lt;div class="<span class="text-yellow-300">relative h-52 bg-slate-100</span>"&gt;</div>
+            <div class="ml-4">&lt;div class="<span class="text-yellow-300">absolute inset-x-0 top-4 mx-auto w-48</span>"&gt;Caixa centralizada&lt;/div&gt;</div>
+            <div>&lt;/div&gt;</div>
+          </div>
+        </div>
+
+        <div class="flex-1 mt-6 lg:mt-0 bg-gradient-to-br from-slate-900 to-purple-900 text-white rounded-2xl p-6 shadow-lg">
+          <h3 class="text-xl font-semibold mb-3">Overlay + modal</h3>
+          <p class="text-sm text-slate-200 mb-4">
+            Combine <code class="font-mono">fixed</code>, <code class="font-mono">inset-0</code> e <code class="font-mono">z-40</code> para estruturar modais com overlay.
+          </p>
+          <div class="code-block text-sm">
+            <div>&lt;div class="<span class="text-yellow-300">fixed inset-0 bg-black/50 z-40</span>"&gt;</div>
+            <div class="ml-4">&lt;div class="<span class="text-yellow-300">absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2</span>"&gt;Modal&lt;/div&gt;</div>
+            <div>&lt;/div&gt;</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-10 bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
+        <div class="relative h-56 rounded-2xl bg-gradient-to-br from-slate-900/10 to-slate-900/40 overflow-hidden">
+          <div class="absolute top-4 left-6 px-4 py-2 bg-indigo-600 text-white rounded-lg shadow-md text-sm">
+            Box com <code class="font-mono">absolute</code>
+          </div>
+          <div class="absolute bottom-6 right-6 px-4 py-2 bg-pink-600 text-white rounded-lg shadow-lg text-sm">
+            Topo com <code class="font-mono">top-4</code> e <code class="font-mono">right-6</code>
+          </div>
+          <div class="absolute inset-0 border border-dashed border-slate-200 pointer-events-none"></div>
+        </div>
+      </div>
+
+      <div class="mt-10 bg-gradient-to-r from-purple-50 to-blue-50 border border-purple-100 rounded-2xl p-6 text-slate-700">
+        <h3 class="text-xl font-semibold text-slate-900 mb-3">Z-Index</h3>
+        <p class="text-sm text-slate-600 mb-4">
+          Use <code class="font-mono">z-{valor}</code> para controlar camadas. Valores maiores aparecem na frente.
+        </p>
+        <div class="relative h-32">
+          <div class="absolute top-6 left-10 z-10 w-32 h-20 bg-white border border-slate-300 rounded-xl flex items-center justify-center text-sm font-semibold shadow">
+            z-10
+          </div>
+          <div class="absolute top-10 left-16 z-20 w-32 h-20 bg-slate-800 text-white rounded-xl flex items-center justify-center text-sm font-semibold shadow-lg">
+            z-20
+          </div>
+          <div class="absolute top-14 left-22 z-30 w-32 h-20 bg-violet-600 text-white rounded-xl flex items-center justify-center text-sm font-semibold shadow-xl">
+            z-30
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FLEXBOX SECTION -->
+  <section id="flexbox" class="py-16 bg-white">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-4xl font-bold text-slate-900 mb-4">Flexbox: organizando a festa</h2>
+        <p class="text-lg text-slate-600 max-w-3xl mx-auto">
+          Pense no Flexbox como o organizador de convidados: ele define direção, alinhamento, distribuição e espaçamento. Com <code class="font-mono">flex</code>, o Tailwind dá comandos precisos para você falar com o layout.
+        </p>
+      </div>
+
+      <div class="space-y-8">
+        <div class="bg-slate-50 rounded-2xl border border-slate-200 p-6 shadow-sm">
+          <h3 class="text-2xl font-semibold text-slate-900 mb-3">Direções: Row e Column</h3>
+          <p class="text-slate-600 mb-4">
+            <code class="font-mono">flex-row</code> empilha itens em linha, <code class="font-mono">flex-col</code> em coluna. Use o mobile-first para alternar facilmente entre os dois.
+          </p>
+          <div class="space-y-4">
+            <div class="flex flex-row gap-3">
+              <span class="px-4 py-2 bg-indigo-500 text-white rounded-lg text-sm">Row</span>
+              <span class="px-4 py-2 bg-indigo-400 text-white rounded-lg text-sm">Row</span>
+              <span class="px-4 py-2 bg-indigo-300 text-white rounded-lg text-sm">Row</span>
+            </div>
+            <div class="flex flex-col gap-3">
+              <span class="px-4 py-2 bg-slate-600 text-white rounded-lg text-sm">Col</span>
+              <span class="px-4 py-2 bg-slate-500 text-white rounded-lg text-sm">Col</span>
+              <span class="px-4 py-2 bg-slate-400 text-white rounded-lg text-sm">Col</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-slate-50 rounded-2xl border border-slate-200 p-6 shadow-sm">
+          <h3 class="text-2xl font-semibold text-slate-900 mb-3">Distribuição e alinhamento</h3>
+          <p class="text-slate-600 mb-4">
+            <code class="font-mono">justify-*</code> controla o eixo principal, <code class="font-mono">items-*</code> o eixo cruzado.
+          </p>
+          <div class="space-y-4">
+            <div class="flex justify-between bg-white border border-dashed border-slate-200 rounded-xl p-3">
+              <span class="text-sm text-slate-600">justify-between</span>
+              <span class="text-sm text-slate-600">itens distribuídos</span>
+            </div>
+            <div class="flex justify-center bg-white border border-dashed border-slate-200 rounded-xl p-3">
+              <span class="text-sm text-slate-600">justify-center</span>
+            </div>
+            <div class="flex items-center h-24 border border-slate-200 rounded-xl gap-4 px-4">
+              <span class="text-xs font-semibold text-slate-500">items-start</span>
+              <div class="flex-1 flex items-start gap-2">
+                <span class="w-16 h-6 bg-slate-400 rounded-full"></span>
+                <span class="w-16 h-10 bg-slate-500 rounded-full"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-slate-50 rounded-2xl border border-slate-200 p-6 shadow-sm">
+          <h3 class="text-2xl font-semibold text-slate-900 mb-3">Gap e Wrap: espaçamento automático</h3>
+          <p class="text-slate-600 mb-4">
+            <code class="font-mono">gap-*</code> distribui espaçamento entre os itens automaticamente. <code class="font-mono">flex-wrap</code> permite que os itens quebrem linha quando necessário.
+          </p>
+          <div class="flex flex-wrap gap-4 bg-white border border-dashed border-slate-200 rounded-xl p-4">
+            <span class="px-4 py-2 bg-emerald-500 text-white rounded-lg text-sm">Card 1</span>
+            <span class="px-4 py-2 bg-emerald-500 text-white rounded-lg text-sm">Card 2</span>
+            <span class="px-4 py-2 bg-emerald-500 text-white rounded-lg text-sm">Card 3</span>
+            <span class="px-4 py-2 bg-emerald-500 text-white rounded-lg text-sm">Card 4</span>
+            <span class="px-4 py-2 bg-emerald-500 text-white rounded-lg text-sm">Card 5</span>
+          </div>
+        </div>
+
+        <div class="bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl border border-blue-100 p-6 shadow-sm">
+          <h3 class="text-2xl font-semibold text-slate-900 mb-3">Centralização completa</h3>
+          <p class="text-slate-600 mb-4">
+            <code class="font-mono">flex items-center justify-center h-screen</code> é o truque mais rápido para colocar algo exatamente no meio da tela.
+          </p>
+          <div class="code-block text-sm">
+            <div>&lt;div class="<span class="text-yellow-300">flex items-center justify-center h-screen</span>"&gt;</div>
+            <div class="ml-4">&lt;div&gt;Centralizado&lt;/div&gt;</div>
+            <div>&lt;/div&gt;</div>
+          </div>
+          <div class="mt-6 flex items-center justify-center h-32 bg-white border border-dashed border-slate-200 rounded-xl">
+            <span class="text-sm font-semibold text-slate-600">Centralizado</span>
+          </div>
+        </div>
+
+        <div class="bg-slate-50 rounded-2xl border border-slate-200 p-6 shadow-sm">
+          <h3 class="text-2xl font-semibold text-slate-900 mb-3">Flex-grow, flex-shrink e flex-1</h3>
+          <p class="text-slate-600 mb-4">
+            <code class="font-mono">flex-1</code> expande o item para preencher o espaço restante. <code class="font-mono">flex-grow</code> e <code class="font-mono">flex-shrink</code> ajustam como o item cresce e encolhe.
+          </p>
+          <div class="flex gap-4">
+            <div class="flex-1 bg-slate-700 text-white rounded-xl p-4 text-center">flex-1</div>
+            <div class="flex-[2] bg-slate-500 text-white rounded-xl p-4 text-center">flex-[2]</div>
+            <div class="flex-[0.5] bg-slate-400 text-white rounded-xl p-4 text-center">flex-[0.5]</div>
+          </div>
+          <p class="text-sm text-slate-500 mt-3">
+            Combine <code class="font-mono">flex-1</code> com <code class="font-mono">min-w-0</code> para evitar overflow em colunas e use <code class="font-mono">flex-shrink-0</code> quando não quiser que o item encolha.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXAMPLES SECTION -->
+  <section id="exemplos" class="py-16 bg-slate-50">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+      <div class="text-center">
+        <h2 class="text-4xl font-bold text-slate-900">Exemplos práticos do dia a dia</h2>
+        <p class="text-lg text-slate-600 max-w-3xl mx-auto">
+          Transforme teoria em prática com layouts que você encontra em um site de verdade: cabeçalho, cards e formulários desenhados com as classes vistas até agora.
+        </p>
+      </div>
+
+      <article class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
+        <h3 class="text-2xl font-semibold text-slate-900 mb-3">Header estilo restaurante</h3>
+        <p class="text-slate-600 text-sm mb-4">
+          Imagine um cardápio onde o logo fica à esquerda, o menu ao centro e o botão de ação à direita.
+        </p>
+        <div class="code-block text-sm mb-6">
+          <div>&lt;header class="<span class="text-yellow-300">flex items-center justify-between p-4 bg-white rounded-2xl shadow</span>"&gt;</div>
+          <div class="ml-4">&lt;div class="<span class="text-yellow-300">flex items-center gap-4</span>"&gt;…&lt;/div&gt;</div>
+          <div class="ml-4">&lt;nav class="<span class="text-yellow-300">flex gap-4 text-sm text-slate-500</span>"&gt;…&lt;/nav&gt;</div>
+          <div class="ml-4">&lt;button class="<span class="text-yellow-300">px-4 py-2 bg-blue-600 text-white rounded-lg</span>"&gt;Login&lt;/button&gt;</div>
+          <div>&lt;/header&gt;</div>
+        </div>
+        <header class="flex items-center justify-between p-4 bg-white rounded-2xl shadow-md">
+          <div class="flex items-center gap-4">
+            <div class="h-10 w-10 bg-indigo-500 text-white font-bold flex items-center justify-center rounded">T</div>
+            <span class="font-semibold text-slate-900">Casa Sabor</span>
+          </div>
+          <nav class="flex gap-6 text-sm text-slate-500">
+            <a class="hover:text-slate-900 transition-colors" href="#">Menu</a>
+            <a class="hover:text-slate-900 transition-colors" href="#">Sobre</a>
+            <a class="hover:text-slate-900 transition-colors" href="#">Contato</a>
+          </nav>
+          <button class="px-4 py-2 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700 transition-colors">Login</button>
+        </header>
+      </article>
+
+      <article class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
+        <h3 class="text-2xl font-semibold text-slate-900 mb-3">Card de produto</h3>
+        <p class="text-slate-600 text-sm mb-4">
+          Estruture um card com imagem, título, descrição e rodapé usando flexbox vertical.
+        </p>
+        <div class="code-block text-sm mb-6">
+          <div>&lt;div class="<span class="text-yellow-300">flex flex-col gap-4 p-6 bg-white rounded-2xl shadow</span>"&gt;</div>
+          <div class="ml-4">&lt;div class="<span class="text-yellow-300">h-40 bg-slate-200 rounded-2xl</span>"&gt;&lt;/div&gt;</div>
+          <div class="ml-4">&lt;h3 class="<span class="text-yellow-300">text-2xl font-bold</span>"&gt;Produto&lt;/h3&gt;</div>
+          <div class="ml-4">&lt;div class="<span class="text-yellow-300">flex justify-between items-center</span>"&gt;…&lt;/div&gt;</div>
+          <div>&lt;/div&gt;</div>
+        </div>
+        <div class="flex flex-col gap-4 p-6 bg-white rounded-2xl shadow-md border border-slate-100">
+          <div class="h-40 rounded-2xl bg-gradient-to-br from-slate-200 to-slate-300"></div>
+          <h4 class="text-2xl font-bold text-slate-900">Produto incrível</h4>
+          <p class="text-sm text-slate-500 leading-relaxed">
+            Descrições curtas e diretas ajudam o leitor a entender o valor do produto.
+          </p>
+          <div class="flex items-center justify-between text-slate-900">
+            <span class="text-2xl font-bold">R$ 99,90</span>
+            <button class="px-4 py-2 bg-purple-600 text-white rounded-lg shadow hover:bg-purple-700 transition-colors">Comprar</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
+        <h3 class="text-2xl font-semibold text-slate-900 mb-3">Formulário flexível</h3>
+        <p class="text-slate-600 text-sm mb-4">
+          Campos empilhados em coluna com botões lado a lado no fim deixam o formulário limpo e legível.
+        </p>
+        <div class="code-block text-sm mb-6">
+          <div>&lt;form class="<span class="text-yellow-300">flex flex-col gap-4 max-w-md</span>"&gt;</div>
+          <div class="ml-4">&lt;div class="<span class="text-yellow-300">flex flex-col gap-2</span>"&gt;…&lt;/div&gt;</div>
+          <div class="ml-4">&lt;div class="<span class="text-yellow-300">flex gap-4</span>"&gt;…&lt;/div&gt;</div>
+          <div>&lt;/form&gt;</div>
+        </div>
+        <form class="flex flex-col gap-4 max-w-md">
+          <label class="flex flex-col gap-1 text-sm text-slate-600">
+            Nome
+            <input type="text" class="border border-slate-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Seu nome">
+          </label>
+          <label class="flex flex-col gap-1 text-sm text-slate-600">
+            Email
+            <input type="email" class="border border-slate-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="email@exemplo.com">
+          </label>
+          <div class="flex gap-4">
+            <button type="submit" class="flex-1 px-4 py-2 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700 transition-colors">Enviar</button>
+            <button type="button" class="flex-1 px-4 py-2 bg-slate-200 text-slate-700 rounded-lg shadow hover:bg-slate-300 transition-colors">Cancelar</button>
+          </div>
+        </form>
+      </article>
+    </div>
+  </section>
+
+  <!-- EXERCISES SECTION -->
+  <section id="exercicios" class="py-16 bg-white">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-10">
+        <h2 class="text-4xl font-bold text-slate-900 mb-4">Exercícios práticos</h2>
+        <p class="text-lg text-slate-600 max-w-3xl mx-auto">
+          Coloque as mãos na massa com os desafios principais da aula e consolide o raciocínio sobre layout.
+        </p>
+      </div>
+      <div class="grid md:grid-cols-2 gap-6">
+        <article class="bg-slate-50 rounded-2xl border border-slate-200 p-6 shadow-sm">
+          <h3 class="text-xl font-semibold text-slate-900 mb-2">Exercício 1 · Header responsivo</h3>
+          <p class="text-sm text-slate-600 mb-2">
+            Recrie um header usando Flexbox: logo à esquerda, menu ao centro, botão à direita, padding 1rem, altura 4rem e sombra sutil.
+          </p>
+          <ul class="text-sm text-slate-500 space-y-1">
+            <li>Flexbox horizontal (logo, nav, botão).</li>
+            <li>Centralize o menu e mantenha o botão destacado.</li>
+            <li>Use <code class="font-mono">shadow</code> e padding uniforme.</li>
+          </ul>
+        </article>
+
+        <article class="bg-slate-50 rounded-2xl border border-slate-200 p-6 shadow-sm">
+          <h3 class="text-xl font-semibold text-slate-900 mb-2">Exercício 2 · Card com layout flex</h3>
+          <p class="text-sm text-slate-600 mb-2">
+            Card vertical com imagem, título, descrição e rodapé usando <code class="font-mono">flex-col</code>.
+          </p>
+          <ul class="text-sm text-slate-500 space-y-1">
+            <li>Imagem com altura 200px.</li>
+            <li>Rodapé com preço à esquerda e botão à direita.</li>
+            <li>Gap de 1rem entre os blocos.</li>
+          </ul>
+        </article>
+
+        <article class="bg-slate-50 rounded-2xl border border-slate-200 p-6 shadow-sm">
+          <h3 class="text-xl font-semibold text-slate-900 mb-2">Exercício 3 · Modal centralizado</h3>
+          <p class="text-sm text-slate-600 mb-2">
+            Crie overlay escuro e modal centralizado com botão de fechar posicionado com <code class="font-mono">absolute</code>.
+          </p>
+          <ul class="text-sm text-slate-500 space-y-1">
+            <li>Overlay com <code class="font-mono">fixed inset-0</code>.</li>
+            <li>Modal width 400px, padding 2rem e border radius.</li>
+            <li>Botão absoluto no canto superior direito.</li>
+          </ul>
+        </article>
+
+        <article class="bg-slate-50 rounded-2xl border border-slate-200 p-6 shadow-sm">
+          <h3 class="text-xl font-semibold text-slate-900 mb-2">Exercício 4 · Sidebar fixa</h3>
+          <p class="text-sm text-slate-600 mb-2">
+            Layout com sidebar à esquerda (256px) e conteúdo principal à direita, ocupando 100vh.
+          </p>
+          <ul class="text-sm text-slate-500 space-y-1">
+            <li>Sidebar com background escuro e texto branco.</li>
+            <li>Menu vertical com links.</li>
+            <li>Conteúdo com padding 2rem.</li>
+          </ul>
+        </article>
+
+        <article class="bg-slate-50 rounded-2xl border border-slate-200 p-6 shadow-sm">
+          <h3 class="text-xl font-semibold text-slate-900 mb-2">Exercício 5 · Formulário flexível</h3>
+          <p class="text-sm text-slate-600 mb-2">
+            Formulário em coluna com espaço de 1rem entre os campos e botões alinhados lado a lado com largura igual.
+          </p>
+          <ul class="text-sm text-slate-500 space-y-1">
+            <li>Campos com label acima do input.</li>
+            <li><code class="font-mono">flex gap-4</code> nos botões.</li>
+            <li>Centralize o formulário em telas grandes.</li>
+          </ul>
+        </article>
+
+        <article class="bg-slate-50 rounded-2xl border border-slate-200 p-6 shadow-sm">
+          <h3 class="text-xl font-semibold text-slate-900 mb-2">Exercício 6 · Header sticky</h3>
+          <p class="text-sm text-slate-600 mb-2">
+            Header com <code class="font-mono">sticky top-0</code>, sombra e z-index alto para permanecer no topo durante o scroll.
+          </p>
+          <ul class="text-sm text-slate-500 space-y-1">
+            <li>Use <code class="font-mono">shadow-lg</code> apenas quando sticky.</li>
+            <li>Conteúdo suficiente abaixo para gerar rolagem.</li>
+            <li>Menu centralizado com logo e botão lateral.</li>
+          </ul>
+        </article>
+
+        <article class="bg-slate-50 rounded-2xl border border-slate-200 p-6 shadow-sm">
+          <h3 class="text-xl font-semibold text-slate-900 mb-2">Exercício 7 · Grid de cards com wrap</h3>
+          <p class="text-sm text-slate-600 mb-2">
+            Container flex com wrap, cada card com 300px de largura e gap 1.5rem.
+          </p>
+          <ul class="text-sm text-slate-500 space-y-1">
+            <li>Use <code class="font-mono">flex flex-wrap gap-6</code>.</li>
+            <li>Cards com imagem, título, descrição e botão.</li>
+            <li>Cards centralizados quando não preenchem a linha.</li>
+          </ul>
+        </article>
+
+        <article class="bg-slate-50 rounded-2xl border border-slate-200 p-6 shadow-sm">
+          <h3 class="text-xl font-semibold text-slate-900 mb-2">Exercício 8 · Analise o layout</h3>
+          <p class="text-sm text-slate-600 mb-2">
+            Identifique problemas nos três blocos de código e corrija layout, alinhamento e prioridade dos itens.
+          </p>
+          <ul class="text-sm text-slate-500 space-y-1">
+            <li>Adicione <code class="font-mono">flex-1</code> ao conteúdo principal.</li>
+            <li>Uso de <code class="font-mono">items-center</code> para centralizar quadrados.</li>
+            <li><code class="font-mono">justify-center</code> faltante no terceiro exemplo.</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- REFLECTIONS SECTION -->
+  <section id="reflexoes" class="py-16 bg-slate-100">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-10">
+        <h2 class="text-4xl font-bold text-slate-900 mb-4">Reflexões estratégicas</h2>
+        <p class="text-lg text-slate-600 max-w-3xl mx-auto">
+          Perguntas para você pensar além do layout e entender o impacto da escolha das utilities.
+        </p>
+      </div>
+      <div class="grid md:grid-cols-2 gap-6">
+        <article class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
+          <h3 class="text-xl font-semibold text-slate-900 mb-2">Display vs Position</h3>
+          <p class="text-sm text-slate-600 mb-2">
+            Qual a diferença entre usar <code class="font-mono">flex</code> e <code class="font-mono">absolute</code>? Quando um afeta o fluxo dos elementos e o outro apenas a posição?
+          </p>
+          <p class="text-sm text-slate-500">
+            Reflita sobre o impacto de cada controlador no layout ao redor e sobre como combinar os dois sem quebrar o DOM.
+          </p>
+        </article>
+
+        <article class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
+          <h3 class="text-xl font-semibold text-slate-900 mb-2">Flexbox vs CSS Grid</h3>
+          <p class="text-sm text-slate-600 mb-2">
+            Quando você deve optar por <code class="font-mono">flex</code> e quando por <code class="font-mono">grid</code>? Pense em menu horizontal, layout com sidebar e grid de produtos.
+          </p>
+          <p class="text-sm text-slate-500">
+            Considere também a responsividade: Flexbox brilha em uma dimensão, Grid em duas.
+          </p>
+        </article>
+
+        <article class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
+          <h3 class="text-xl font-semibold text-slate-900 mb-2">Performance e especificidade</h3>
+          <p class="text-sm text-slate-600 mb-2">
+            Muitas classes Tailwind geram mais CSS? Compare com escrever tudo em um arquivo CSS customizado e pense em cache e PurgeCSS.
+          </p>
+          <p class="text-sm text-slate-500">
+            Quais situações pedem classes atômicas e quais pedem abstrações?
+          </p>
+        </article>
+
+        <article class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
+          <h3 class="text-xl font-semibold text-slate-900 mb-2">Responsividade com Flexbox</h3>
+          <p class="text-sm text-slate-600 mb-2">
+            Como transformar um layout vertical em mobile para horizontal em desktop usando apenas Flexbox e prefixos como <code class="font-mono">md:flex-row</code>?
+          </p>
+          <p class="text-sm text-slate-500">
+            Pense no mobile-first: comece com <code class="font-mono">flex-col</code> e altere a direção nos breakpoints adequados.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONNECTION SECTION -->
+  <section id="conexao" class="py-16 bg-white">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-6">
+        <h2 class="text-4xl font-bold text-slate-900 mb-2">Conexão com o CSS tradicional</h2>
+        <p class="text-lg text-slate-600 max-w-3xl mx-auto">
+          Nunca perca de vista o que cada classe representa em CSS. Use estas referências sempre que estiver em dúvida.
+        </p>
+      </div>
+      <div class="bg-slate-900 text-white rounded-2xl p-8 shadow-lg">
+        <div class="grid md:grid-cols-2 gap-6">
+          <div>
+            <p class="text-sm text-slate-300 mb-1">Layout</p>
+            <p class="text-xl font-semibold">
+              <code class="font-mono">flex</code> → <code class="font-mono">display: flex</code><br>
+              <code class="font-mono">grid</code> → <code class="font-mono">display: grid</code><br>
+              <code class="font-mono">hidden</code> → <code class="font-mono">display: none</code>
+            </p>
+          </div>
+          <div>
+            <p class="text-sm text-slate-300 mb-1">Alinhamento & espaçamento</p>
+            <p class="text-xl font-semibold">
+              <code class="font-mono">justify-center</code> → <code class="font-mono">justify-content: center</code><br>
+              <code class="font-mono">items-center</code> → <code class="font-mono">align-items: center</code><br>
+              <code class="font-mono">gap-4</code> → <code class="font-mono">gap: 1rem</code>
+            </p>
+          </div>
+        </div>
+        <div class="mt-8 grid md:grid-cols-2 gap-6">
+          <div>
+            <p class="text-sm text-slate-300 mb-1">Position</p>
+            <p class="text-xl font-semibold">
+              <code class="font-mono">relative</code> → <code class="font-mono">position: relative</code><br>
+              <code class="font-mono">absolute top-4 right-6</code> → <code class="font-mono">top: 1rem; right: 1.5rem</code><br>
+              <code class="font-mono">inset-0</code> → <code class="font-mono">top: 0; right: 0; bottom: 0; left: 0</code>
+            </p>
+          </div>
+          <div>
+            <p class="text-sm text-slate-300 mb-1">Camadas e prioridades</p>
+            <p class="text-xl font-semibold">
+              <code class="font-mono">z-10</code> → <code class="font-mono">z-index: 10</code><br>
+              <code class="font-mono">fixed top-0</code> → trava no viewport acima de tudo
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="mt-6 text-center text-slate-600">
+        <p>A próxima aula mergulha no <a href="../aula-04-grid/index.html" class="text-blue-600 hover:underline">CSS Grid com Tailwind</a>, então prepare o caderno e continue a sequência!</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="bg-slate-900 text-white py-12">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-3">
+      <p class="text-lg font-semibold">Voltando a cada aula, você constrói confiança no layout do Tailwind.</p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="../index.html" class="px-4 py-2 bg-white text-slate-900 rounded-full font-semibold shadow hover:bg-slate-100 transition-colors">Voltar aos Projetos</a>
+        <a href="../../curso/README.md" class="px-4 py-2 border border-white/70 rounded-full font-semibold hover:bg-white/10 transition-colors">Ver o Roteiro</a>
+      </div>
+      <p class="text-sm text-slate-400">&copy; <script>document.write(new Date().getFullYear());</script> Curso Didático Tailwind CSS</p>
+    </div>
+  </footer>
+</body>
+</html>
+
