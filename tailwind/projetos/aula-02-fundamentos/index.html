@@ -1,0 +1,1154 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aula 2: Fundamentos do Sistema de Classes Utilitárias - Projeto Prático</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Estilos customizados para demonstrações específicas */
+    .code-block {
+      background: #1e293b;
+      color: #e2e8f0;
+      padding: 1rem;
+      border-radius: 0.5rem;
+      font-family: 'Courier New', monospace;
+      font-size: 0.875rem;
+      overflow-x: auto;
+    }
+    .highlight {
+      background: yellow;
+      padding: 2px 4px;
+      border-radius: 2px;
+    }
+    .spacing-demo {
+      background: #e0e7ff;
+      border: 2px dashed #6366f1;
+      position: relative;
+    }
+    .spacing-demo::before {
+      content: attr(data-label);
+      position: absolute;
+      top: -20px;
+      left: 0;
+      font-size: 0.75rem;
+      color: #6366f1;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body class="bg-gray-50">
+  
+  <!-- ============================================ -->
+  <!-- NAVEGAÇÃO -->
+  <!-- ============================================ -->
+  <nav class="bg-white shadow-md sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+        <a href="../index.html" class="text-xl font-bold text-blue-600 hover:text-blue-700 transition-colors">
+          ← Voltar
+        </a>
+        <div class="flex items-center space-x-2">
+          <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-semibold">
+            Aula 2
+          </span>
+          <span class="text-gray-600">Fundamentos e Classes Utilitárias</span>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ============================================ -->
+  <!-- HERO SECTION - INTRODUÇÃO -->
+  <!-- ============================================ -->
+  <section class="bg-gradient-to-br from-purple-600 via-blue-600 to-indigo-600 text-white py-20">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="text-5xl font-bold mb-6">
+        Aula 2: Fundamentos do Sistema de Classes Utilitárias
+      </h1>
+      <p class="text-xl mb-8 text-blue-100">
+        Aprenda o sistema de espaçamento, cores, tipografia, bordas e sombras do Tailwind CSS através de exemplos práticos e visuais.
+      </p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <div class="px-4 py-2 bg-white/20 backdrop-blur rounded-lg">
+          <span class="font-semibold">📏 Espaçamento</span>
+        </div>
+        <div class="px-4 py-2 bg-white/20 backdrop-blur rounded-lg">
+          <span class="font-semibold">🎨 Cores</span>
+        </div>
+        <div class="px-4 py-2 bg-white/20 backdrop-blur rounded-lg">
+          <span class="font-semibold">✍️ Tipografia</span>
+        </div>
+        <div class="px-4 py-2 bg-white/20 backdrop-blur rounded-lg">
+          <span class="font-semibold">🔲 Bordas e Sombras</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- SEÇÃO 1: SISTEMA DE ESPAÇAMENTO -->
+  <!-- ============================================ -->
+  <section id="espacamento" class="py-16 bg-white">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-4xl font-bold text-gray-900 mb-4">
+          📏 Sistema de Espaçamento
+        </h2>
+        <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+          O Tailwind usa um sistema de espaçamento padronizado baseado em múltiplos de <code class="bg-gray-100 px-2 py-1 rounded">0.25rem</code> (4px). É como ter uma régua organizada!
+        </p>
+      </div>
+
+      <!-- Escala de Espaçamento -->
+      <div class="bg-gray-100 rounded-xl p-8 mb-8">
+        <h3 class="text-2xl font-bold text-gray-900 mb-6">Escala de Espaçamento Padrão</h3>
+        <div class="overflow-x-auto">
+          <table class="w-full bg-white rounded-lg shadow-sm">
+            <thead class="bg-gradient-to-r from-blue-600 to-purple-600 text-white">
+              <tr>
+                <th class="px-6 py-4 text-left font-bold">Valor Tailwind</th>
+                <th class="px-6 py-4 text-left font-bold">Valor em rem</th>
+                <th class="px-6 py-4 text-left font-bold">Valor em px</th>
+                <th class="px-6 py-4 text-left font-bold">Visualização</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-200">
+              <tr class="hover:bg-gray-50">
+                <td class="px-6 py-4 font-mono text-blue-600">0</td>
+                <td class="px-6 py-4 font-mono text-sm">0</td>
+                <td class="px-6 py-4 font-mono text-sm">0px</td>
+                <td class="px-6 py-4">
+                  <div class="w-0 h-4 bg-blue-500 rounded"></div>
+                </td>
+              </tr>
+              <tr class="hover:bg-gray-50">
+                <td class="px-6 py-4 font-mono text-blue-600">1</td>
+                <td class="px-6 py-4 font-mono text-sm">0.25rem</td>
+                <td class="px-6 py-4 font-mono text-sm">4px</td>
+                <td class="px-6 py-4">
+                  <div class="w-1 h-4 bg-blue-500 rounded"></div>
+                </td>
+              </tr>
+              <tr class="hover:bg-gray-50">
+                <td class="px-6 py-4 font-mono text-blue-600">2</td>
+                <td class="px-6 py-4 font-mono text-sm">0.5rem</td>
+                <td class="px-6 py-4 font-mono text-sm">8px</td>
+                <td class="px-6 py-4">
+                  <div class="w-2 h-4 bg-blue-500 rounded"></div>
+                </td>
+              </tr>
+              <tr class="hover:bg-gray-50">
+                <td class="px-6 py-4 font-mono text-blue-600 font-bold">4</td>
+                <td class="px-6 py-4 font-mono text-sm font-bold">1rem</td>
+                <td class="px-6 py-4 font-mono text-sm font-bold">16px</td>
+                <td class="px-6 py-4">
+                  <div class="w-4 h-4 bg-blue-500 rounded"></div>
+                  <span class="text-xs text-gray-500 ml-2">← Ponto de referência</span>
+                </td>
+              </tr>
+              <tr class="hover:bg-gray-50">
+                <td class="px-6 py-4 font-mono text-blue-600">8</td>
+                <td class="px-6 py-4 font-mono text-sm">2rem</td>
+                <td class="px-6 py-4 font-mono text-sm">32px</td>
+                <td class="px-6 py-4">
+                  <div class="w-8 h-4 bg-blue-500 rounded"></div>
+                </td>
+              </tr>
+              <tr class="hover:bg-gray-50">
+                <td class="px-6 py-4 font-mono text-blue-600">16</td>
+                <td class="px-6 py-4 font-mono text-sm">4rem</td>
+                <td class="px-6 py-4 font-mono text-sm">64px</td>
+                <td class="px-6 py-4">
+                  <div class="w-16 h-4 bg-blue-500 rounded"></div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="mt-4 bg-blue-50 p-4 rounded-lg">
+          <p class="text-sm text-gray-700">
+            <strong>💡 Dica:</strong> Lembre-se que <code class="bg-white px-2 py-1 rounded">4 = 1rem = 16px</code> é o ponto de referência mais comum!
+          </p>
+        </div>
+      </div>
+
+      <!-- Padding -->
+      <div class="mb-12">
+        <h3 class="text-2xl font-bold text-gray-900 mb-6">Padding: O Preenchimento Interno</h3>
+        <p class="text-gray-700 mb-6">
+          <strong>Analogia:</strong> Pense em padding como o <strong>enchimento de uma almofada</strong>. É o espaço interno entre o conteúdo e a borda do elemento.
+        </p>
+
+        <div class="grid md:grid-cols-2 gap-8">
+          <!-- Padding em todos os lados -->
+          <div class="bg-gray-50 rounded-lg p-6">
+            <h4 class="font-semibold text-gray-800 mb-4">Padding em Todos os Lados</h4>
+            <div class="code-block text-sm mb-4">
+              <div>&lt;div class="<span class="text-yellow-300">p-4</span>"&gt;</div>
+              <div>  Conteúdo</div>
+              <div>&lt;/div&gt;</div>
+            </div>
+            <div class="bg-white p-4 border-2 border-blue-500 rounded">
+              <div class="bg-blue-100 p-4 rounded text-center">
+                <span class="text-blue-800 font-semibold">p-4 = padding: 1rem em todos os lados</span>
+              </div>
+            </div>
+            <div class="mt-4 bg-blue-50 p-3 rounded text-sm">
+              <strong>Equivalente CSS:</strong><br>
+              <code>padding: 1rem;</code>
+            </div>
+          </div>
+
+          <!-- Padding direcional -->
+          <div class="bg-gray-50 rounded-lg p-6">
+            <h4 class="font-semibold text-gray-800 mb-4">Padding por Direção</h4>
+            <div class="code-block text-sm mb-4">
+              <div>&lt;div class="<span class="text-yellow-300">px-4 py-2</span>"&gt;</div>
+              <div>  Conteúdo</div>
+              <div>&lt;/div&gt;</div>
+            </div>
+            <div class="bg-white px-4 py-2 border-2 border-blue-500 rounded">
+              <div class="bg-blue-100 px-4 py-2 rounded text-center">
+                <span class="text-blue-800 font-semibold text-sm">px-4 py-2 = padding horizontal 1rem, vertical 0.5rem</span>
+              </div>
+            </div>
+            <div class="mt-4 bg-blue-50 p-3 rounded text-sm">
+              <strong>Equivalente CSS:</strong><br>
+              <code>padding-left: 1rem;<br>padding-right: 1rem;<br>padding-top: 0.5rem;<br>padding-bottom: 0.5rem;</code>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tabela de Padding -->
+        <div class="mt-8 bg-white rounded-xl shadow-lg overflow-hidden">
+          <div class="overflow-x-auto">
+            <table class="w-full">
+              <thead class="bg-gradient-to-r from-blue-600 to-purple-600 text-white">
+                <tr>
+                  <th class="px-6 py-4 text-left font-bold">Classe Tailwind</th>
+                  <th class="px-6 py-4 text-left font-bold">Propriedade CSS</th>
+                  <th class="px-6 py-4 text-left font-bold">Descrição</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-gray-200">
+                <tr class="hover:bg-gray-50">
+                  <td class="px-6 py-4 font-mono text-blue-600">p-{valor}</td>
+                  <td class="px-6 py-4 font-mono text-sm">padding: {valor}</td>
+                  <td class="px-6 py-4">Todos os lados</td>
+                </tr>
+                <tr class="hover:bg-gray-50">
+                  <td class="px-6 py-4 font-mono text-blue-600">px-{valor}</td>
+                  <td class="px-6 py-4 font-mono text-sm">padding-left + padding-right</td>
+                  <td class="px-6 py-4">Horizontal (esquerda e direita)</td>
+                </tr>
+                <tr class="hover:bg-gray-50">
+                  <td class="px-6 py-4 font-mono text-blue-600">py-{valor}</td>
+                  <td class="px-6 py-4 font-mono text-sm">padding-top + padding-bottom</td>
+                  <td class="px-6 py-4">Vertical (topo e fundo)</td>
+                </tr>
+                <tr class="hover:bg-gray-50">
+                  <td class="px-6 py-4 font-mono text-blue-600">pt-{valor}</td>
+                  <td class="px-6 py-4 font-mono text-sm">padding-top</td>
+                  <td class="px-6 py-4">Apenas topo</td>
+                </tr>
+                <tr class="hover:bg-gray-50">
+                  <td class="px-6 py-4 font-mono text-blue-600">pr-{valor}</td>
+                  <td class="px-6 py-4 font-mono text-sm">padding-right</td>
+                  <td class="px-6 py-4">Apenas direita</td>
+                </tr>
+                <tr class="hover:bg-gray-50">
+                  <td class="px-6 py-4 font-mono text-blue-600">pb-{valor}</td>
+                  <td class="px-6 py-4 font-mono text-sm">padding-bottom</td>
+                  <td class="px-6 py-4">Apenas fundo</td>
+                </tr>
+                <tr class="hover:bg-gray-50">
+                  <td class="px-6 py-4 font-mono text-blue-600">pl-{valor}</td>
+                  <td class="px-6 py-4 font-mono text-sm">padding-left</td>
+                  <td class="px-6 py-4">Apenas esquerda</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Margin -->
+      <div class="mb-12">
+        <h3 class="text-2xl font-bold text-gray-900 mb-6">Margin: O Espaço Entre Elementos</h3>
+        <p class="text-gray-700 mb-6">
+          <strong>Analogia:</strong> Pense em margin como o <strong>espaço entre móveis em uma sala</strong>. É o espaço externo ao redor do elemento.
+        </p>
+
+        <div class="grid md:grid-cols-2 gap-8">
+          <!-- Margin em todos os lados -->
+          <div class="bg-gray-50 rounded-lg p-6">
+            <h4 class="font-semibold text-gray-800 mb-4">Margin em Todos os Lados</h4>
+            <div class="code-block text-sm mb-4">
+              <div>&lt;div class="<span class="text-yellow-300">m-4</span>"&gt;</div>
+              <div>  Elemento</div>
+              <div>&lt;/div&gt;</div>
+            </div>
+            <div class="bg-gray-200 p-4 rounded">
+              <div class="bg-blue-100 m-4 border-2 border-blue-500 rounded text-center py-4">
+                <span class="text-blue-800 font-semibold">m-4 = margin: 1rem em todos os lados</span>
+              </div>
+            </div>
+            <div class="mt-4 bg-blue-50 p-3 rounded text-sm">
+              <strong>Equivalente CSS:</strong><br>
+              <code>margin: 1rem;</code>
+            </div>
+          </div>
+
+          <!-- Margin automático (centralização) -->
+          <div class="bg-gray-50 rounded-lg p-6">
+            <h4 class="font-semibold text-gray-800 mb-4">Margin Automático (Centralização)</h4>
+            <div class="code-block text-sm mb-4">
+              <div>&lt;div class="<span class="text-yellow-300">mx-auto max-w-md</span>"&gt;</div>
+              <div>  Centralizado</div>
+              <div>&lt;/div&gt;</div>
+            </div>
+            <div class="bg-gray-200 p-4 rounded">
+              <div class="bg-blue-100 mx-auto max-w-md border-2 border-blue-500 rounded text-center py-4">
+                <span class="text-blue-800 font-semibold">mx-auto = centralizado horizontalmente</span>
+              </div>
+            </div>
+            <div class="mt-4 bg-blue-50 p-3 rounded text-sm">
+              <strong>Equivalente CSS:</strong><br>
+              <code>margin-left: auto;<br>margin-right: auto;</code>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Gap -->
+      <div class="mb-12">
+        <h3 class="text-2xl font-bold text-gray-900 mb-6">Gap: Espaçamento em Flexbox e Grid</h3>
+        <p class="text-gray-700 mb-6">
+          <strong>Analogia:</strong> Pense em gap como o <strong>espaço entre pratos em uma mesa</strong>. É o espaçamento uniforme entre itens em containers flex ou grid.
+        </p>
+
+        <div class="grid md:grid-cols-2 gap-8">
+          <!-- Gap em Flexbox -->
+          <div class="bg-gray-50 rounded-lg p-6">
+            <h4 class="font-semibold text-gray-800 mb-4">Gap em Flexbox</h4>
+            <div class="code-block text-sm mb-4">
+              <div>&lt;div class="<span class="text-yellow-300">flex gap-4</span>"&gt;</div>
+              <div class="ml-4">  &lt;div&gt;Item 1&lt;/div&gt;</div>
+              <div class="ml-4">  &lt;div&gt;Item 2&lt;/div&gt;</div>
+              <div class="ml-4">  &lt;div&gt;Item 3&lt;/div&gt;</div>
+              <div>&lt;/div&gt;</div>
+            </div>
+            <div class="flex gap-4 bg-gray-200 p-4 rounded">
+              <div class="bg-blue-500 text-white px-4 py-2 rounded">Item 1</div>
+              <div class="bg-blue-500 text-white px-4 py-2 rounded">Item 2</div>
+              <div class="bg-blue-500 text-white px-4 py-2 rounded">Item 3</div>
+            </div>
+            <div class="mt-4 bg-blue-50 p-3 rounded text-sm">
+              <strong>Equivalente CSS:</strong><br>
+              <code>display: flex;<br>gap: 1rem;</code>
+            </div>
+          </div>
+
+          <!-- Gap em Grid -->
+          <div class="bg-gray-50 rounded-lg p-6">
+            <h4 class="font-semibold text-gray-800 mb-4">Gap em Grid</h4>
+            <div class="code-block text-sm mb-4">
+              <div>&lt;div class="<span class="text-yellow-300">grid grid-cols-3 gap-4</span>"&gt;</div>
+              <div class="ml-4">  &lt;div&gt;Item&lt;/div&gt;</div>
+              <div class="ml-4">  ...</div>
+              <div>&lt;/div&gt;</div>
+            </div>
+            <div class="grid grid-cols-3 gap-4 bg-gray-200 p-4 rounded">
+              <div class="bg-blue-500 text-white px-4 py-2 rounded text-center">1</div>
+              <div class="bg-blue-500 text-white px-4 py-2 rounded text-center">2</div>
+              <div class="bg-blue-500 text-white px-4 py-2 rounded text-center">3</div>
+              <div class="bg-blue-500 text-white px-4 py-2 rounded text-center">4</div>
+              <div class="bg-blue-500 text-white px-4 py-2 rounded text-center">5</div>
+              <div class="bg-blue-500 text-white px-4 py-2 rounded text-center">6</div>
+            </div>
+            <div class="mt-4 bg-blue-50 p-3 rounded text-sm">
+              <strong>Equivalente CSS:</strong><br>
+              <code>display: grid;<br>grid-template-columns: repeat(3, 1fr);<br>gap: 1rem;</code>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- SEÇÃO 2: SISTEMA DE CORES -->
+  <!-- ============================================ -->
+  <section id="cores" class="py-16 bg-gray-100">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-4xl font-bold text-gray-900 mb-4">
+          🎨 Sistema de Cores
+        </h2>
+        <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+          O Tailwind possui um sistema de cores rico e consistente, com cada cor tendo uma escala de 50 a 950, onde valores menores são mais claros e valores maiores são mais escuros.
+        </p>
+      </div>
+
+      <!-- Escala de Intensidade -->
+      <div class="bg-white rounded-xl p-8 mb-8 shadow-lg">
+        <h3 class="text-2xl font-bold text-gray-900 mb-6">Escala de Intensidade: Do Claro ao Escuro</h3>
+        <p class="text-gray-700 mb-6">
+          <strong>Analogia:</strong> Pense na escala de cores como <strong>níveis de iluminação de uma lâmpada</strong>:
+        </p>
+
+        <div class="grid md:grid-cols-2 gap-6 mb-8">
+          <div class="bg-blue-50 border-2 border-blue-200 rounded-lg p-6">
+            <h4 class="font-bold text-blue-800 mb-4">Cores Claras (50-200)</h4>
+            <p class="text-sm text-gray-700 mb-4">Como uma lâmpada no mínimo → Usado para backgrounds suaves</p>
+            <div class="space-y-2">
+              <div class="bg-blue-50 p-3 rounded text-center text-blue-900 font-semibold">blue-50</div>
+              <div class="bg-blue-100 p-3 rounded text-center text-blue-900 font-semibold">blue-100</div>
+              <div class="bg-blue-200 p-3 rounded text-center text-blue-900 font-semibold">blue-200</div>
+            </div>
+          </div>
+
+          <div class="bg-blue-50 border-2 border-blue-200 rounded-lg p-6">
+            <h4 class="font-bold text-blue-800 mb-4">Cor Média (500)</h4>
+            <p class="text-sm text-gray-700 mb-4">Como uma lâmpada no meio → <strong>Cor principal da marca</strong></p>
+            <div class="bg-blue-500 p-6 rounded text-center text-white font-bold text-xl">blue-500</div>
+          </div>
+
+          <div class="bg-blue-50 border-2 border-blue-200 rounded-lg p-6">
+            <h4 class="font-bold text-blue-800 mb-4">Cores Escuras (600-700)</h4>
+            <p class="text-sm text-gray-700 mb-4">Como uma lâmpada alta → Usado para hover, elementos ativos</p>
+            <div class="space-y-2">
+              <div class="bg-blue-600 p-3 rounded text-center text-white font-semibold">blue-600</div>
+              <div class="bg-blue-700 p-3 rounded text-center text-white font-semibold">blue-700</div>
+            </div>
+          </div>
+
+          <div class="bg-blue-50 border-2 border-blue-200 rounded-lg p-6">
+            <h4 class="font-bold text-blue-800 mb-4">Cores Muito Escuras (800-950)</h4>
+            <p class="text-sm text-gray-700 mb-4">Como uma lâmpada no máximo → Usado para texto, elementos críticos</p>
+            <div class="space-y-2">
+              <div class="bg-blue-800 p-3 rounded text-center text-white font-semibold">blue-800</div>
+              <div class="bg-blue-900 p-3 rounded text-center text-white font-semibold">blue-900</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tabela de Intensidades -->
+        <div class="overflow-x-auto">
+          <table class="w-full bg-white rounded-lg">
+            <thead class="bg-gradient-to-r from-blue-600 to-purple-600 text-white">
+              <tr>
+                <th class="px-6 py-4 text-left font-bold">Intensidade</th>
+                <th class="px-6 py-4 text-left font-bold">Característica</th>
+                <th class="px-6 py-4 text-left font-bold">Uso Comum</th>
+                <th class="px-6 py-4 text-left font-bold">Exemplo Visual</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-200">
+              <tr class="hover:bg-gray-50">
+                <td class="px-6 py-4 font-mono text-blue-600">50-200</td>
+                <td class="px-6 py-4">Muito claro a claro</td>
+                <td class="px-6 py-4">Backgrounds suaves, highlights</td>
+                <td class="px-6 py-4">
+                  <div class="bg-blue-100 px-4 py-2 rounded text-blue-900 text-sm font-semibold">Exemplo</div>
+                </td>
+              </tr>
+              <tr class="hover:bg-gray-50">
+                <td class="px-6 py-4 font-mono text-blue-600 font-bold">500</td>
+                <td class="px-6 py-4 font-bold">Médio (cor base)</td>
+                <td class="px-6 py-4 font-bold">Cor principal da marca</td>
+                <td class="px-6 py-4">
+                  <div class="bg-blue-500 px-4 py-2 rounded text-white text-sm font-semibold">Exemplo</div>
+                  <span class="text-xs text-gray-500">← Ponto de referência</span>
+                </td>
+              </tr>
+              <tr class="hover:bg-gray-50">
+                <td class="px-6 py-4 font-mono text-blue-600">600-700</td>
+                <td class="px-6 py-4">Médio-escuro a escuro</td>
+                <td class="px-6 py-4">Hover states, elementos ativos</td>
+                <td class="px-6 py-4">
+                  <div class="bg-blue-600 px-4 py-2 rounded text-white text-sm font-semibold">Exemplo</div>
+                </td>
+              </tr>
+              <tr class="hover:bg-gray-50">
+                <td class="px-6 py-4 font-mono text-blue-600">800-950</td>
+                <td class="px-6 py-4">Muito escuro a quase preto</td>
+                <td class="px-6 py-4">Texto, elementos críticos</td>
+                <td class="px-6 py-4">
+                  <div class="bg-blue-900 px-4 py-2 rounded text-white text-sm font-semibold">Exemplo</div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Aplicando Cores -->
+      <div class="bg-white rounded-xl p-8 shadow-lg">
+        <h3 class="text-2xl font-bold text-gray-900 mb-6">Aplicando Cores: Text, Background e Border</h3>
+
+        <div class="grid md:grid-cols-3 gap-6">
+          <!-- Text Color -->
+          <div class="bg-gray-50 rounded-lg p-6">
+            <h4 class="font-semibold text-gray-800 mb-4">Text Color (Cor do Texto)</h4>
+            <div class="code-block text-sm mb-4">
+              <div>&lt;p class="<span class="text-yellow-300">text-blue-500</span>"&gt;</div>
+              <div>  Texto azul</div>
+              <div>&lt;/p&gt;</div>
+            </div>
+            <div class="bg-white p-4 rounded border-2 border-gray-300">
+              <p class="text-blue-500 font-semibold">Texto azul médio</p>
+              <p class="text-gray-700 font-semibold">Texto cinza escuro</p>
+              <p class="text-red-600 font-semibold">Texto vermelho escuro</p>
+            </div>
+            <div class="mt-4 bg-blue-50 p-3 rounded text-sm">
+              <strong>Equivalente CSS:</strong><br>
+              <code>color: rgb(59 130 246);</code>
+            </div>
+          </div>
+
+          <!-- Background Color -->
+          <div class="bg-gray-50 rounded-lg p-6">
+            <h4 class="font-semibold text-gray-800 mb-4">Background Color (Cor de Fundo)</h4>
+            <div class="code-block text-sm mb-4">
+              <div>&lt;div class="<span class="text-yellow-300">bg-blue-500</span>"&gt;</div>
+              <div>  Fundo azul</div>
+              <div>&lt;/div&gt;</div>
+            </div>
+            <div class="bg-white p-4 rounded border-2 border-gray-300">
+              <div class="bg-blue-500 text-white p-4 rounded mb-2 text-center font-semibold">bg-blue-500</div>
+              <div class="bg-gray-100 p-4 rounded text-center font-semibold">bg-gray-100</div>
+            </div>
+            <div class="mt-4 bg-blue-50 p-3 rounded text-sm">
+              <strong>Equivalente CSS:</strong><br>
+              <code>background-color: rgb(59 130 246);</code>
+            </div>
+          </div>
+
+          <!-- Border Color -->
+          <div class="bg-gray-50 rounded-lg p-6">
+            <h4 class="font-semibold text-gray-800 mb-4">Border Color (Cor da Borda)</h4>
+            <div class="code-block text-sm mb-4">
+              <div>&lt;div class="<span class="text-yellow-300">border-2 border-blue-500</span>"&gt;</div>
+              <div>  Borda azul</div>
+              <div>&lt;/div&gt;</div>
+            </div>
+            <div class="bg-white p-4 rounded">
+              <div class="border-2 border-blue-500 p-4 rounded mb-2 text-center font-semibold">border-blue-500</div>
+              <div class="border-2 border-red-500 p-4 rounded text-center font-semibold">border-red-500</div>
+            </div>
+            <div class="mt-4 bg-blue-50 p-3 rounded text-sm">
+              <strong>Equivalente CSS:</strong><br>
+              <code>border-width: 2px;<br>border-color: rgb(59 130 246);</code>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Gradientes -->
+      <div class="mt-8 bg-white rounded-xl p-8 shadow-lg">
+        <h3 class="text-2xl font-bold text-gray-900 mb-6">Gradientes: Pintura Artística</h3>
+        <p class="text-gray-700 mb-6">
+          <strong>Analogia:</strong> É como fazer uma pintura artística onde as cores se misturam suavemente, como ver o pôr do sol!
+        </p>
+
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="bg-gray-50 rounded-lg p-6">
+            <h4 class="font-semibold text-gray-800 mb-4">Gradiente Linear</h4>
+            <div class="code-block text-sm mb-4">
+              <div>&lt;div class="<span class="text-yellow-300">bg-gradient-to-r from-blue-500 to-purple-500</span>"&gt;</div>
+              <div>  Gradiente</div>
+              <div>&lt;/div&gt;</div>
+            </div>
+            <div class="bg-gradient-to-r from-blue-500 to-purple-500 p-8 rounded text-white text-center font-bold">
+              Gradiente Azul → Roxo
+            </div>
+            <div class="mt-4 bg-blue-50 p-3 rounded text-sm">
+              <strong>Direções:</strong><br>
+              <code>to-r</code> = direita (→)<br>
+              <code>to-b</code> = baixo (↓)<br>
+              <code>to-br</code> = diagonal (↘)
+            </div>
+          </div>
+
+          <div class="bg-gray-50 rounded-lg p-6">
+            <h4 class="font-semibold text-gray-800 mb-4">Gradiente com 3 Cores</h4>
+            <div class="code-block text-sm mb-4">
+              <div>&lt;div class="<span class="text-yellow-300">bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500</span>"&gt;</div>
+              <div>  Gradiente</div>
+              <div>&lt;/div&gt;</div>
+            </div>
+            <div class="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 p-8 rounded text-white text-center font-bold">
+              Gradiente Multi-Cor
+            </div>
+            <div class="mt-4 bg-blue-50 p-3 rounded text-sm">
+              <strong>Equivalente CSS:</strong><br>
+              <code>background-image: linear-gradient(to right, blue, purple, pink);</code>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- SEÇÃO 3: TIPOGRAFIA -->
+  <!-- ============================================ -->
+  <section id="tipografia" class="py-16 bg-white">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-4xl font-bold text-gray-900 mb-4">
+          ✍️ Tipografia: A Arte da Escrita
+        </h2>
+        <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+          Controle completo sobre tamanhos, pesos, alinhamento e decoração de texto.
+        </p>
+      </div>
+
+      <!-- Font Size -->
+      <div class="mb-12">
+        <h3 class="text-2xl font-bold text-gray-900 mb-6">Font Size: O Tamanho das Letras</h3>
+        <p class="text-gray-700 mb-6">
+          <strong>Analogia:</strong> Pense em tamanhos de fonte como <strong>tamanhos de roupas</strong>:
+        </p>
+
+        <div class="bg-gray-100 rounded-xl p-8">
+          <div class="space-y-4">
+            <div class="bg-white p-4 rounded-lg border-2 border-gray-200">
+              <h1 class="text-4xl font-bold text-gray-900 mb-2">text-4xl</h1>
+              <p class="text-sm text-gray-600">Título Grande (como um outdoor)</p>
+            </div>
+            <div class="bg-white p-4 rounded-lg border-2 border-gray-200">
+              <p class="text-xl font-semibold text-gray-900 mb-2">text-xl</p>
+              <p class="text-sm text-gray-600">Texto Extra Grande</p>
+            </div>
+            <div class="bg-white p-4 rounded-lg border-2 border-gray-200">
+              <p class="text-base text-gray-900 mb-2">text-base</p>
+              <p class="text-sm text-gray-600">Texto Normal (como um livro)</p>
+            </div>
+            <div class="bg-white p-4 rounded-lg border-2 border-gray-200">
+              <p class="text-sm text-gray-900 mb-2">text-sm</p>
+              <p class="text-xs text-gray-600">Texto Pequeno (como uma nota de rodapé)</p>
+            </div>
+            <div class="bg-white p-4 rounded-lg border-2 border-gray-200">
+              <p class="text-xs text-gray-900 mb-2">text-xs</p>
+              <p class="text-xs text-gray-600">Texto Extra Pequeno</p>
+            </div>
+          </div>
+
+          <div class="mt-6 bg-blue-50 p-4 rounded-lg">
+            <p class="text-sm text-gray-700">
+              <strong>Mapeamento:</strong><br>
+              <code class="bg-white px-2 py-1 rounded">text-xs</code> = 0.75rem (12px)<br>
+              <code class="bg-white px-2 py-1 rounded">text-sm</code> = 0.875rem (14px)<br>
+              <code class="bg-white px-2 py-1 rounded">text-base</code> = 1rem (16px) ← Padrão<br>
+              <code class="bg-white px-2 py-1 rounded">text-lg</code> = 1.125rem (18px)<br>
+              <code class="bg-white px-2 py-1 rounded">text-xl</code> = 1.25rem (20px)<br>
+              <code class="bg-white px-2 py-1 rounded">text-2xl</code> = 1.5rem (24px)<br>
+              <code class="bg-white px-2 py-1 rounded">text-4xl</code> = 2.25rem (36px)
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Font Weight -->
+      <div class="mb-12">
+        <h3 class="text-2xl font-bold text-gray-900 mb-6">Font Weight: A Espessura das Letras</h3>
+        <p class="text-gray-700 mb-6">
+          <strong>Analogia:</strong> Pense em peso da fonte como a <strong>espessura de uma linha desenhada</strong>:
+        </p>
+
+        <div class="bg-gray-100 rounded-xl p-8">
+          <div class="space-y-3">
+            <div class="bg-white p-4 rounded-lg border-2 border-gray-200">
+              <p class="font-thin text-gray-900 text-lg">font-thin (100) - Linha muito fina (como um fio de cabelo)</p>
+            </div>
+            <div class="bg-white p-4 rounded-lg border-2 border-gray-200">
+              <p class="font-light text-gray-900 text-lg">font-light (300) - Linha fina (como um lápis)</p>
+            </div>
+            <div class="bg-white p-4 rounded-lg border-2 border-gray-200">
+              <p class="font-normal text-gray-900 text-lg">font-normal (400) - Linha normal (como uma caneta)</p>
+            </div>
+            <div class="bg-white p-4 rounded-lg border-2 border-gray-200">
+              <p class="font-semibold text-gray-900 text-lg">font-semibold (600) - Linha grossa (como um marcador)</p>
+            </div>
+            <div class="bg-white p-4 rounded-lg border-2 border-gray-200">
+              <p class="font-bold text-gray-900 text-lg">font-bold (700) - Linha muito grossa (como um pincel)</p>
+            </div>
+            <div class="bg-white p-4 rounded-lg border-2 border-gray-200">
+              <p class="font-black text-gray-900 text-lg">font-black (900) - Linha extremamente grossa (como um rolo de tinta)</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Text Alignment -->
+      <div class="mb-12">
+        <h3 class="text-2xl font-bold text-gray-900 mb-6">Text Alignment: Alinhando o Texto</h3>
+        <p class="text-gray-700 mb-6">
+          <strong>Analogia:</strong> Pense em alinhamento como <strong>organizar livros em uma estante</strong>:
+        </p>
+
+        <div class="grid md:grid-cols-3 gap-6">
+          <div class="bg-gray-50 rounded-lg p-6">
+            <h4 class="font-semibold text-gray-800 mb-4">text-left</h4>
+            <div class="bg-white p-4 rounded border-2 border-gray-300">
+              <p class="text-left text-gray-700">Texto alinhado à esquerda (padrão de leitura)</p>
+            </div>
+          </div>
+          <div class="bg-gray-50 rounded-lg p-6">
+            <h4 class="font-semibold text-gray-800 mb-4">text-center</h4>
+            <div class="bg-white p-4 rounded border-2 border-gray-300">
+              <p class="text-center text-gray-700">Texto centralizado (como um pôster)</p>
+            </div>
+          </div>
+          <div class="bg-gray-50 rounded-lg p-6">
+            <h4 class="font-semibold text-gray-800 mb-4">text-right</h4>
+            <div class="bg-white p-4 rounded border-2 border-gray-300">
+              <p class="text-right text-gray-700">Texto alinhado à direita</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Text Decoration -->
+      <div class="mb-12">
+        <h3 class="text-2xl font-bold text-gray-900 mb-6">Text Decoration: Decorando o Texto</h3>
+        <p class="text-gray-700 mb-6">
+          <strong>Analogia:</strong> Pense em decoração de texto como <strong>marcar texto com caneta marca-texto</strong>:
+        </p>
+
+        <div class="grid md:grid-cols-3 gap-6">
+          <div class="bg-gray-50 rounded-lg p-6">
+            <h4 class="font-semibold text-gray-800 mb-4">underline</h4>
+            <div class="bg-white p-4 rounded border-2 border-gray-300">
+              <p class="underline text-gray-700">Texto importante (como destacar no caderno)</p>
+            </div>
+          </div>
+          <div class="bg-gray-50 rounded-lg p-6">
+            <h4 class="font-semibold text-gray-800 mb-4">line-through</h4>
+            <div class="bg-white p-4 rounded border-2 border-gray-300">
+              <p class="line-through text-gray-700">Texto cancelado (como riscar na lista)</p>
+            </div>
+          </div>
+          <div class="bg-gray-50 rounded-lg p-6">
+            <h4 class="font-semibold text-gray-800 mb-4">no-underline</h4>
+            <div class="bg-white p-4 rounded border-2 border-gray-300">
+              <p class="no-underline text-gray-700">Texto limpo sem decoração</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- SEÇÃO 4: BORDAS E SOMBRAS -->
+  <!-- ============================================ -->
+  <section id="bordas-sombras" class="py-16 bg-gray-100">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-4xl font-bold text-gray-900 mb-4">
+          🔲 Bordas e Sombras
+        </h2>
+        <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+          Crie profundidade visual e defina limites com bordas e sombras.
+        </p>
+      </div>
+
+      <!-- Border Width -->
+      <div class="mb-12">
+        <h3 class="text-2xl font-bold text-gray-900 mb-6">Border Width: A Espessura da Moldura</h3>
+        <p class="text-gray-700 mb-6">
+          <strong>Analogia:</strong> Pense em largura de borda como a <strong>espessura da moldura de um quadro</strong>:
+        </p>
+
+        <div class="grid md:grid-cols-4 gap-6">
+          <div class="bg-white rounded-lg p-6 text-center">
+            <div class="border border-blue-500 p-4 rounded mb-4">
+              <p class="text-sm font-semibold">border (1px)</p>
+            </div>
+            <p class="text-xs text-gray-600">Moldura fina</p>
+          </div>
+          <div class="bg-white rounded-lg p-6 text-center">
+            <div class="border-2 border-blue-500 p-4 rounded mb-4">
+              <p class="text-sm font-semibold">border-2 (2px)</p>
+            </div>
+            <p class="text-xs text-gray-600">Moldura média</p>
+          </div>
+          <div class="bg-white rounded-lg p-6 text-center">
+            <div class="border-4 border-blue-500 p-4 rounded mb-4">
+              <p class="text-sm font-semibold">border-4 (4px)</p>
+            </div>
+            <p class="text-xs text-gray-600">Moldura grossa</p>
+          </div>
+          <div class="bg-white rounded-lg p-6 text-center">
+            <div class="border-8 border-blue-500 p-4 rounded mb-4">
+              <p class="text-sm font-semibold">border-8 (8px)</p>
+            </div>
+            <p class="text-xs text-gray-600">Moldura muito grossa</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Border Radius -->
+      <div class="mb-12">
+        <h3 class="text-2xl font-bold text-gray-900 mb-6">Border Radius: Arredondando os Cantos</h3>
+        <p class="text-gray-700 mb-6">
+          <strong>Analogia:</strong> Pense em border-radius como <strong>arredondar os cantos de uma mesa</strong>:
+        </p>
+
+        <div class="grid md:grid-cols-4 gap-6">
+          <div class="bg-white rounded-lg p-6 text-center">
+            <div class="bg-blue-500 text-white p-6 rounded-none mb-4">
+              <p class="text-sm font-semibold">rounded-none</p>
+            </div>
+            <p class="text-xs text-gray-600">Cantos quadrados</p>
+          </div>
+          <div class="bg-white rounded-lg p-6 text-center">
+            <div class="bg-blue-500 text-white p-6 rounded-sm mb-4">
+              <p class="text-sm font-semibold">rounded-sm</p>
+            </div>
+            <p class="text-xs text-gray-600">Cantos levemente arredondados</p>
+          </div>
+          <div class="bg-white rounded-lg p-6 text-center">
+            <div class="bg-blue-500 text-white p-6 rounded-lg mb-4">
+              <p class="text-sm font-semibold">rounded-lg</p>
+            </div>
+            <p class="text-xs text-gray-600">Cantos bem arredondados</p>
+          </div>
+          <div class="bg-white rounded-lg p-6 text-center">
+            <div class="bg-blue-500 text-white p-6 rounded-full w-24 h-24 mx-auto mb-4 flex items-center justify-center">
+              <p class="text-xs font-semibold">rounded-full</p>
+            </div>
+            <p class="text-xs text-gray-600">Círculo perfeito</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Box Shadow -->
+      <div class="mb-12">
+        <h3 class="text-2xl font-bold text-gray-900 mb-6">Box Shadow: Criando Profundidade</h3>
+        <p class="text-gray-700 mb-6">
+          <strong>Analogia:</strong> Pense em sombras como a <strong>sombra que um objeto projeta no sol</strong>. Elas criam profundidade visual!
+        </p>
+
+        <div class="grid md:grid-cols-5 gap-6">
+          <div class="bg-white rounded-lg p-6 text-center">
+            <div class="bg-white p-6 rounded-lg shadow-sm mb-4">
+              <p class="text-sm font-semibold text-gray-700">shadow-sm</p>
+            </div>
+            <p class="text-xs text-gray-600">Sombra pequena</p>
+          </div>
+          <div class="bg-white rounded-lg p-6 text-center">
+            <div class="bg-white p-6 rounded-lg shadow mb-4">
+              <p class="text-sm font-semibold text-gray-700">shadow</p>
+            </div>
+            <p class="text-xs text-gray-600">Sombra normal</p>
+          </div>
+          <div class="bg-white rounded-lg p-6 text-center">
+            <div class="bg-white p-6 rounded-lg shadow-md mb-4">
+              <p class="text-sm font-semibold text-gray-700">shadow-md</p>
+            </div>
+            <p class="text-xs text-gray-600">Sombra média</p>
+          </div>
+          <div class="bg-white rounded-lg p-6 text-center">
+            <div class="bg-white p-6 rounded-lg shadow-lg mb-4">
+              <p class="text-sm font-semibold text-gray-700">shadow-lg</p>
+            </div>
+            <p class="text-xs text-gray-600">Sombra grande</p>
+          </div>
+          <div class="bg-white rounded-lg p-6 text-center">
+            <div class="bg-white p-6 rounded-lg shadow-xl mb-4">
+              <p class="text-sm font-semibold text-gray-700">shadow-xl</p>
+            </div>
+            <p class="text-xs text-gray-600">Sombra muito grande</p>
+          </div>
+        </div>
+
+        <div class="mt-6 bg-blue-50 p-4 rounded-lg">
+          <p class="text-sm text-gray-700">
+            <strong>💡 Por que usar sombras?</strong> Elas criam <strong>profundidade visual</strong>, fazendo elementos parecerem tridimensionais e destacando-os da página.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- SEÇÃO 5: OPACIDADE -->
+  <!-- ============================================ -->
+  <section id="opacidade" class="py-16 bg-white">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-4xl font-bold text-gray-900 mb-4">
+          👻 Opacidade: Transparência dos Elementos
+        </h2>
+        <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+          Controle a transparência dos elementos para criar efeitos visuais interessantes.
+        </p>
+      </div>
+
+      <div class="bg-gray-100 rounded-xl p-8">
+        <h3 class="text-2xl font-bold text-gray-900 mb-6">Níveis de Opacidade</h3>
+        <p class="text-gray-700 mb-6">
+          <strong>Analogia:</strong> Pense em opacidade como <strong>vidros com diferentes níveis de transparência</strong>:
+        </p>
+
+        <div class="grid md:grid-cols-4 gap-6 mb-8">
+          <div class="bg-white rounded-lg p-6 text-center relative">
+            <div class="bg-blue-500 opacity-0 p-6 rounded mb-4 border-2 border-dashed border-gray-300">
+              <p class="text-sm font-semibold text-white">opacity-0</p>
+            </div>
+            <p class="text-xs text-gray-600">Totalmente transparente</p>
+            <p class="text-xs text-gray-500 mt-2">(como ar - você não vê nada)</p>
+          </div>
+          <div class="bg-white rounded-lg p-6 text-center">
+            <div class="bg-blue-500 opacity-50 p-6 rounded mb-4">
+              <p class="text-sm font-semibold text-white">opacity-50</p>
+            </div>
+            <p class="text-xs text-gray-600">Semi-transparente</p>
+            <p class="text-xs text-gray-500 mt-2">(como vidro fosco)</p>
+          </div>
+          <div class="bg-white rounded-lg p-6 text-center">
+            <div class="bg-blue-500 opacity-75 p-6 rounded mb-4">
+              <p class="text-sm font-semibold text-white">opacity-75</p>
+            </div>
+            <p class="text-xs text-gray-600">Quase opaco</p>
+            <p class="text-xs text-gray-500 mt-2">(como vidro levemente fosco)</p>
+          </div>
+          <div class="bg-white rounded-lg p-6 text-center">
+            <div class="bg-blue-500 opacity-100 p-6 rounded mb-4">
+              <p class="text-sm font-semibold text-white">opacity-100</p>
+            </div>
+            <p class="text-xs text-gray-600">Totalmente opaco</p>
+            <p class="text-xs text-gray-500 mt-2">(como parede sólida)</p>
+          </div>
+        </div>
+
+        <!-- Opacidade em Cores -->
+        <div class="bg-white rounded-lg p-6">
+          <h4 class="font-semibold text-gray-800 mb-4">Opacidade em Cores: A Sintaxe Moderna</h4>
+          <p class="text-gray-700 mb-4">
+            <strong>Analogia:</strong> É como <strong>misturar tinta com água</strong>:
+          </p>
+          <div class="code-block text-sm mb-4">
+            <div>&lt;div class="<span class="text-yellow-300">bg-blue-500/50</span>"&gt;</div>
+            <div>  Fundo azul com 50% de transparência</div>
+            <div>&lt;/div&gt;</div>
+          </div>
+          <div class="grid md:grid-cols-3 gap-4">
+            <div class="bg-blue-500/20 p-6 rounded text-center border-2 border-blue-500">
+              <p class="font-semibold text-blue-900">bg-blue-500/20</p>
+            </div>
+            <div class="bg-blue-500/50 p-6 rounded text-center border-2 border-blue-500">
+              <p class="font-semibold text-blue-900">bg-blue-500/50</p>
+            </div>
+            <div class="bg-blue-500/80 p-6 rounded text-center border-2 border-blue-500">
+              <p class="font-semibold text-blue-900">bg-blue-500/80</p>
+            </div>
+          </div>
+          <div class="mt-4 bg-blue-50 p-3 rounded text-sm">
+            <p class="text-gray-700">
+              <strong>Vantagem:</strong> Você pode controlar a opacidade diretamente na cor, sem precisar de uma classe separada!
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- SEÇÃO 6: EXEMPLO PRÁTICO COMPLETO -->
+  <!-- ============================================ -->
+  <section id="exemplo-pratico" class="py-16 bg-gray-100">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-4xl font-bold text-gray-900 mb-4">
+          🎯 Exemplo Prático: Construindo um Card Completo
+        </h2>
+        <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+          Vamos construir um card profissional passo a passo, combinando todas as classes que aprendemos!
+        </p>
+      </div>
+
+      <div class="bg-white rounded-xl p-8 shadow-lg">
+        <h3 class="text-2xl font-bold text-gray-900 mb-6">Pensamento Passo a Passo</h3>
+
+        <div class="space-y-8">
+          <!-- Passo 1 -->
+          <div class="bg-gray-50 rounded-lg p-6">
+            <h4 class="font-semibold text-gray-800 mb-4">Passo 1: Estrutura Básica</h4>
+            <div class="code-block text-sm mb-4">
+              <div>&lt;div&gt;Conteúdo&lt;/div&gt;</div>
+            </div>
+            <div class="bg-white p-4 rounded border-2 border-gray-300">
+              <div>Conteúdo</div>
+            </div>
+          </div>
+
+          <!-- Passo 2 -->
+          <div class="bg-gray-50 rounded-lg p-6">
+            <h4 class="font-semibold text-gray-800 mb-4">Passo 2: Adicionar Padding</h4>
+            <div class="code-block text-sm mb-4">
+              <div>&lt;div class="<span class="text-yellow-300">p-6</span>"&gt;Conteúdo&lt;/div&gt;</div>
+            </div>
+            <div class="bg-white p-4 rounded border-2 border-gray-300">
+              <div class="p-6 bg-blue-50 rounded">Conteúdo com padding</div>
+            </div>
+            <p class="text-sm text-gray-600 mt-2">💡 "Preciso de espaço interno confortável"</p>
+          </div>
+
+          <!-- Passo 3 -->
+          <div class="bg-gray-50 rounded-lg p-6">
+            <h4 class="font-semibold text-gray-800 mb-4">Passo 3: Adicionar Fundo Branco</h4>
+            <div class="code-block text-sm mb-4">
+              <div>&lt;div class="<span class="text-yellow-300">p-6 bg-white</span>"&gt;Conteúdo&lt;/div&gt;</div>
+            </div>
+            <div class="bg-gray-200 p-4 rounded border-2 border-gray-300">
+              <div class="p-6 bg-white rounded">Conteúdo com fundo branco</div>
+            </div>
+            <p class="text-sm text-gray-600 mt-2">💡 "Preciso de uma cor de fundo"</p>
+          </div>
+
+          <!-- Passo 4 -->
+          <div class="bg-gray-50 rounded-lg p-6">
+            <h4 class="font-semibold text-gray-800 mb-4">Passo 4: Adicionar Bordas Arredondadas</h4>
+            <div class="code-block text-sm mb-4">
+              <div>&lt;div class="<span class="text-yellow-300">p-6 bg-white rounded-lg</span>"&gt;Conteúdo&lt;/div&gt;</div>
+            </div>
+            <div class="bg-gray-200 p-4 rounded border-2 border-gray-300">
+              <div class="p-6 bg-white rounded-lg">Conteúdo com cantos arredondados</div>
+            </div>
+            <p class="text-sm text-gray-600 mt-2">💡 "Preciso de cantos suaves"</p>
+          </div>
+
+          <!-- Passo 5 -->
+          <div class="bg-gray-50 rounded-lg p-6">
+            <h4 class="font-semibold text-gray-800 mb-4">Passo 5: Adicionar Sombra</h4>
+            <div class="code-block text-sm mb-4">
+              <div>&lt;div class="<span class="text-yellow-300">p-6 bg-white rounded-lg shadow-md</span>"&gt;Conteúdo&lt;/div&gt;</div>
+            </div>
+            <div class="bg-gray-200 p-4 rounded border-2 border-gray-300">
+              <div class="p-6 bg-white rounded-lg shadow-md">Conteúdo com sombra</div>
+            </div>
+            <p class="text-sm text-gray-600 mt-2">💡 "Preciso de profundidade visual"</p>
+          </div>
+
+          <!-- Resultado Final -->
+          <div class="bg-gradient-to-br from-blue-50 to-purple-50 rounded-lg p-6 border-2 border-blue-200">
+            <h4 class="font-bold text-gray-800 mb-4 text-xl">✅ Resultado Final: Card Completo</h4>
+            <div class="code-block text-sm mb-4">
+              <div>&lt;div class="<span class="text-yellow-300">p-6 bg-white rounded-lg shadow-md max-w-md</span>"&gt;</div>
+              <div class="ml-4">  &lt;h3 class="<span class="text-yellow-300">text-xl font-semibold mb-2 text-gray-800</span>"&gt;Título&lt;/h3&gt;</div>
+              <div class="ml-4">  &lt;p class="<span class="text-yellow-300">text-gray-600 mb-4</span>"&gt;Descrição&lt;/p&gt;</div>
+              <div class="ml-4">  &lt;button class="<span class="text-yellow-300">px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600</span>"&gt;</div>
+              <div class="ml-8">    Ação</div>
+              <div class="ml-4">  &lt;/button&gt;</div>
+              <div>&lt;/div&gt;</div>
+            </div>
+            <div class="p-6 bg-white rounded-lg shadow-md max-w-md">
+              <h3 class="text-xl font-semibold mb-2 text-gray-800">Título do Card</h3>
+              <p class="text-gray-600 mb-4">Este é um exemplo completo de card usando todas as classes fundamentais do Tailwind CSS.</p>
+              <button class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors">
+                Clique Aqui
+              </button>
+            </div>
+            <div class="mt-4 bg-blue-50 p-4 rounded-lg">
+              <p class="text-sm text-gray-700">
+                <strong>🎉 Parabéns!</strong> Você construiu um card profissional combinando:<br>
+                ✅ Espaçamento (padding)<br>
+                ✅ Cores (background, text)<br>
+                ✅ Tipografia (font-size, font-weight)<br>
+                ✅ Bordas (rounded)<br>
+                ✅ Sombras (shadow)
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- SEÇÃO 7: RESUMO E PRÓXIMOS PASSOS -->
+  <!-- ============================================ -->
+  <section id="resumo" class="py-16 bg-gradient-to-br from-purple-600 to-blue-600 text-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-4xl font-bold mb-6">Resumo: O Que Você Aprendeu</h2>
+      <div class="grid md:grid-cols-2 gap-6 mb-8">
+        <div class="bg-white/10 backdrop-blur rounded-lg p-6">
+          <h3 class="text-xl font-bold mb-3">✅ Conceitos-Chave</h3>
+          <ul class="text-left space-y-2 text-blue-100">
+            <li>• Sistema de espaçamento padronizado (0.25rem base)</li>
+            <li>• Padding, margin e gap para layout</li>
+            <li>• Sistema de cores (50-950)</li>
+            <li>• Tipografia completa (size, weight, alignment)</li>
+            <li>• Bordas e sombras para profundidade</li>
+            <li>• Opacidade para efeitos visuais</li>
+          </ul>
+        </div>
+        <div class="bg-white/10 backdrop-blur rounded-lg p-6">
+          <h3 class="text-xl font-bold mb-3">🎯 Próximos Passos</h3>
+          <ul class="text-left space-y-2 text-blue-100">
+            <li>• Layout com Display e Position</li>
+            <li>• Flexbox completo</li>
+            <li>• CSS Grid</li>
+            <li>• Responsividade</li>
+            <li>• Estados e interatividade</li>
+          </ul>
+        </div>
+      </div>
+      <div class="bg-white/20 backdrop-blur rounded-lg p-6">
+        <p class="text-lg mb-4">
+          <strong>💡 Dica Final:</strong> Pratique combinando essas classes! Crie cards, botões, badges... Quanto mais você praticar, mais rápido você se tornará em construir interfaces. Lembre-se sempre de mapear mentalmente cada classe Tailwind com a propriedade CSS equivalente!
+        </p>
+        <div class="flex justify-center gap-4 mt-6">
+          <a href="../index.html" class="inline-block px-6 py-3 bg-white text-blue-600 rounded-lg font-semibold hover:bg-blue-50 transition-colors">
+            Ver Todas as Aulas
+          </a>
+          <a href="#espacamento" class="inline-block px-6 py-3 bg-white/20 text-white rounded-lg font-semibold hover:bg-white/30 transition-colors">
+            ↑ Topo
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- FOOTER -->
+  <!-- ============================================ -->
+  <footer class="bg-gray-900 text-gray-300 py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <p class="mb-4">
+        <strong>Aula 2:</strong> Fundamentos do Sistema de Classes Utilitárias - Projeto Prático Completo
+      </p>
+      <div class="flex justify-center space-x-6">
+        <a href="../index.html" class="text-blue-400 hover:text-blue-300 transition-colors">
+          ← Voltar para Aulas
+        </a>
+        <span class="text-gray-600">|</span>
+        <a href="#espacamento" class="text-blue-400 hover:text-blue-300 transition-colors">
+          ↑ Topo
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Smooth Scroll -->
+  <script>
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
+
