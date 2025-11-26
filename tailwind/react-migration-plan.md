@@ -38,5 +38,22 @@ Cada nova aula deve atestar o propósito da regra (CLI → Componentes → Hooks
 3. Esboçar o plano de componentes/props e iniciar a migração da `aula-05-responsividade`.
 4. Registrar o roadmap das oito aulas adicionais num `docs/roadmap-aulas.md`.
 
+### Mapeamento rápido da `aula-05-responsividade`
+
+| Seção | Componente sugerido | Observações |
+|------|---------------------|-------------|
+| `revisao` | `ResponsividadeRevisao` | Mostra comparação CSS puro × Tailwind com cards e blocks de código. Pode aceitar arrays de exemplos. |
+| `filosofia` | `MobileFirstPhilosophy` | Contém listas e um destaque final sobre ordem de prefixos; `cards` individuais recebem título e lista de pontos. |
+| `breakpoints` | `BreakpointTable` | Tabula prefixos/pontos e inclui callout com código. Ideal para reutilizar um component `CodeBlock`. |
+| `propriedades` | `ResponsivePropertiesShowcase` | Grid de artigos (espaçamento, tipografia, layout, cores) com `CodeBlock` embedado; cada card descreve o que muda. |
+| `custom` | `CustomScreens` | Texto explicando como estender `tailwind.config.ts` e renderiza snippet de objeto com valores extras. |
+| `variantes` | `VariantPlayground` | Mostra combinações de hover/focus prefixadas; exibe lista de `code-blocks`. |
+| `debugging` | `DebugGuidelines` | Explica workflow de DevTools + snippet de media query traduzido. |
+| `exercicios` | `ExercisesGrid` | Grid 2×2 com cards para cartões, grades, navegação e hero; lista de bullets detalha steps e classes. |
+| `resumo` | `ResumoChecklist` | Lista de principais aprendizados e dois callouts (CSS→Tailwind e próximos passos). |
+| `conexao-css` | `CssConnectionCards` | Cards menores ligando classes a media queries, seguido de links de navegação e botões com CTA. |
+
+Cada componente pode receber props com strings, arrays e `CodeBlock` reutilizável para os trechos de classe. O foco inicial será montar o layout geral da aula 5 com esses componentes e usar Tailwind no JSX.
+
 Com isso pronto, voltamos à regra e começamos a migrar cada seção. Deseja que eu execute o scaffold Vite agora?
 
